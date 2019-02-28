@@ -9,7 +9,7 @@ public class Invoice
 {
     // instance variables - replace the example below with your own
     private int id;
-    private int idItem;
+    private Item item;
     private String date;
     private int totalPrice;
 
@@ -19,10 +19,10 @@ public class Invoice
     public Invoice()
     {
         // initialise instance variables
-        id = 0;
-        idItem = 0;
-        date = "";
-        totalPrice = 0;
+        int id;
+        Item item;
+        String date;
+        int totalPrice;
     }
 
     /**
@@ -34,41 +34,49 @@ public class Invoice
     public int getId()
     {
         // put your code here
-        return 0;
+        return id;
     }
     
-    public String getIdItem()
+    public Item getItem()
     {
-        return "";
+        return item;
     }
     
     public String getDate()
     {
-        return "";
+        return date;
     }
     
     public int getTotalPrice()
     {
-        return 0;
+        return totalPrice;
     }
     
-    public int setId(int id)
+    public void setId(int id)
     {
-        return 0;
+        this.id = id;
     }
     
-    public int setIdItem(int idItem)
+    public void setItem(Item item)
     {
-        return 0;
+        this.item = item;
     }
     
-    public String setDate(String date)
+    public void setDate(String date)
     {
-        return "";
+        this.date = date;
     }
     
-    public int setTotalPrice(int totalPrice)
+    public void setTotalPrice(int totalPrice)
     {
-        return 0;
+        this.totalPrice = totalPrice;
+    }
+    
+    public void printData()
+    {
+        System.out.println("Transaction ID: "+id);
+        System.out.println("Item: "+item);
+        System.out.println("Date: "+date);
+        System.out.println("Total: "+totalPrice);
     }
 }

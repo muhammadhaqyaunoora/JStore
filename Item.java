@@ -13,6 +13,7 @@ public class Item
     private int stock;
     private int price;
     private String category;
+    private Supplier supplier;
 
     /**
      * Constructor for objects of class Item
@@ -20,11 +21,12 @@ public class Item
     public Item()
     {
         // initialise instance variables
-        id = 0;
-        name = "";
-        stock = 0;
-        price = 0;
-        category = "";
+        int id;
+        String name;
+        int stock;
+        int price;
+        String category;
+        Supplier suplier;
     }
 
     /**
@@ -36,51 +38,65 @@ public class Item
     public int getId()
     {
         // put your code here
-        return 0;
+        return id;
     }
     
     public String getName()
     {
-        return "";
+        return name;
     }
     
     public int getStock()
     {
-        return 0;
+        return stock;
     }
     
     public int getPrice()
     {
-        return 0;
+        return price;
     }
     
     public String getCategory()
     {
-        return "";
+        return category;
     }
     
-    public int setId(int id)
+    public Supplier getSupplier()
     {
-        return 0;
+        return supplier;
     }
     
-    public String setName(String name)
+    public void setId(int id)
     {
-        return "";
+        this.id = id;
     }
     
-    public int setStock(int stock)
+    public void setName(String name)
     {
-        return 0;
+        this.name = name;
     }
     
-    public int setPrice(int price)
+    public void setStock(int stock)
     {
-        return 0;
+        this.stock = stock;
     }
     
-    public String setCategory(String category)
+    public void setPrice(int price)
     {
-        return "";
+        this.price = price;
+    }
+    
+    public void setCategory(String category)
+    {
+        this.category = category;
+    }
+    
+    public void printData()
+    {
+        System.out.println("Item ID: "+id);
+        System.out.println("Item Name: "+name);
+        System.out.println("Stock: "+stock);
+        System.out.println("Category: "+category);
+        System.out.println("Supplier: "+supplier);
     }
 }

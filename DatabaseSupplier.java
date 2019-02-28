@@ -1,24 +1,24 @@
 
 /**
- * Write a description of class DatabaseItem here.
+ * Write a description of class DatabaseSupplier here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class DatabaseItem
+public class DatabaseSupplier
 {
     // instance variables - replace the example below with your own
-    private String[] listItem;
-    private Item item;
+    private String[] listSupplier;
+    private Supplier supplier;
 
     /**
-     * Constructor for objects of class DatabaseItem
+     * Constructor for objects of class DatabaseSupplier
      */
-    public DatabaseItem()
+    public DatabaseSupplier()
     {
         // initialise instance variables
-        String[] listItem;
-        Item item;
+        String[] listSupplier;
+        Supplier supplier;
     }
 
     /**
@@ -27,24 +27,24 @@ public class DatabaseItem
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public boolean addItem(Item item)
+    public boolean addSupplier(Supplier supplier)
     {
         // put your code here
         return true;
     }
     
-    public boolean removeItem(Item item)
+    public boolean removeSupplier(Supplier supplier)
     {
         return true;
     }
     
-    public Item getItem()
+    public Supplier getSupplier()
     {
-        return item;
+        return supplier;
     }
     
-    public String[] getItemDatabase()
+    public String[] getListSupplier()
     {
-        return listItem;
+        return listSupplier;
     }
 }

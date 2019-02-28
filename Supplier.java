@@ -12,7 +12,7 @@ public class Supplier
     private String name;
     private String email;
     private String phoneNumber;
-    private String city;
+    private Location location;
 
     /**
      * Constructor for objects of class Supplier
@@ -20,11 +20,11 @@ public class Supplier
     public Supplier()
     {
         // initialise instance variables
-        id = 0;
-        name = "";
-        email = "";
-        phoneNumber = "";
-        city = "";
+        int id;
+        String name;
+        String email;
+        String phoneNumber;
+        Location location;
     }
 
     /**
@@ -36,51 +36,59 @@ public class Supplier
     public int getId()
     {
         // put your code here
-        return 0;
+        return id;
     }
     
     public String getName()
     {
-        return "";
+        return name;
     }
     
     public String getEmail()
     {
-        return "";
+        return email;
     }
     
     public String getPhoneNumber()
     {
-        return "";
+        return phoneNumber;
     }
     
-    public String getCity()
+    public Location getLocation()
     {
-        return "";
+        return location;
     }
     
-    public int setId(int id)
+    public void setId(int id)
     {
-        return 0;
+        this.id = id;
     }
     
-    public String setName(String name)
+    public void setName(String name)
     {
-        return "";
+        this.name = name;
     }
     
-    public String setEmail(String email)
+    public void setEmail(String email)
     {
-        return "";
+        this.email = email;
     }
     
-    public String setPhoneNumber(String phoneNumber)
+    public void setPhoneNumber(String phoneNumber)
     {
-        return "";
+        this.phoneNumber = phoneNumber;
     }
     
-    public String setCity(String city)
+    public void setLocation(Location location)
     {
-        return "";
+        this.location = location;
+    }
+    
+    public void printData()
+    {
+        System.out.println("Supplier ID: "+id);
+        System.out.println("Supplier Name: "+name);
+        System.out.println("Phone Number: "+phoneNumber);
+        System.out.println("Location: "+location);
     }
 }
