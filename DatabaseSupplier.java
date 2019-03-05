@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class DatabaseSupplier here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Ini adalah kelas DatabaseSupplier. Kelas ini digunakan untuk 
+ * database kelas Supplier.
+ * @author (Muhammad Haqy Aunoora)
+ * @version (28 Februari 2019)
  */
 public class DatabaseSupplier
 {
@@ -12,7 +12,7 @@ public class DatabaseSupplier
     private Supplier supplier;
 
     /**
-     * Constructor for objects of class DatabaseSupplier
+     * Konstruktor untuk objek dari kelas DatabaseSupplier
      */
     public DatabaseSupplier()
     {
@@ -22,10 +22,10 @@ public class DatabaseSupplier
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Method untuk menambah data supplier
+     * 
+     * @param supplier
+     * @return    true
      */
     public boolean addSupplier(Supplier supplier)
     {
@@ -33,17 +33,32 @@ public class DatabaseSupplier
         return true;
     }
     
+    /**
+     * Method untuk menghapus data supplier
+     * 
+     * @param supplier
+     * @return    true
+     */
     public boolean removeSupplier(Supplier supplier)
     {
         return true;
     }
     
+    /**
+     * Method getter untuk mengambil data
+     * 
+     * @return    supplier
+     */
     public Supplier getSupplier()
     {
         return supplier;
     }
     
-    public String[] getListSupplier()
+    /**
+     * Method getter untuk mengambil data
+     * 
+     * @return    listSupplier
+     */public String[] getListSupplier()
     {
         return listSupplier;
     }

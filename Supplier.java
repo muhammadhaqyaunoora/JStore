@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Supplier here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Ini adalah kelas Supplier. Kelas ini digunakan untuk mendata
+ * supplier dan hal-hal yang bersangkutan dengannya.
+ * @author (Muhammad Haqy Aunoora)
+ * @version (28 Februari 2019)
  */
 public class Supplier
 {
@@ -15,7 +15,7 @@ public class Supplier
     private Location location;
 
     /**
-     * Constructor for objects of class Supplier
+     * Konstruktor untuk objek dari kelas Supplier
      */
     public Supplier()
     {
@@ -28,10 +28,9 @@ public class Supplier
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Method getter untuk mengambil data
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @return    id
      */
     public int getId()
     {
@@ -39,51 +38,99 @@ public class Supplier
         return id;
     }
     
+    /**
+     * Method getter untuk mengambil data
+     *
+     * @return    name
+     */
     public String getName()
     {
         return name;
     }
     
+    /**
+     * Method getter untuk mengambil data
+     *
+     * @return    email
+     */
     public String getEmail()
     {
         return email;
     }
     
+    /**
+     * Method getter untuk mengambil data
+     *
+     * @return    phoneNumber
+     */
     public String getPhoneNumber()
     {
         return phoneNumber;
     }
     
+    /**
+     * Method getter untuk mengambil data
+     *
+     * @return    location
+     */
     public Location getLocation()
     {
         return location;
     }
     
+    /**
+     * Method setter untuk menentukan data
+     *
+     * @param id 
+     */
     public void setId(int id)
     {
         this.id = id;
     }
     
+    /**
+     * Method setter untuk menentukan data
+     *
+     * @param name 
+     */
     public void setName(String name)
     {
         this.name = name;
     }
     
+    /**
+     * Method setter untuk menentukan data
+     *
+     * @param email 
+     */
     public void setEmail(String email)
     {
         this.email = email;
     }
     
+    /**
+     * Method setter untuk menentukan data
+     *
+     * @param phoneNumber 
+     */
     public void setPhoneNumber(String phoneNumber)
     {
         this.phoneNumber = phoneNumber;
     }
     
+    /**
+     * Method setter untuk menentukan data
+     *
+     * @param location 
+     */
     public void setLocation(Location location)
     {
         this.location = location;
     }
     
+    /**
+     * Method printData untuk memunculkan data
+     */
     public void printData()
     {
         System.out.println("Supplier ID: "+id);

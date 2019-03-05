@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Item here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Ini adalah kelas Item. Kelas ini digunakan untuk mendata
+ * barang dan hal-hal yang bersangkutan dengannya.
+ * @author (Muhammad Haqy Aunoora)
+ * @version (28 Februari 2019)
  */
 public class Item
 {
@@ -16,7 +16,7 @@ public class Item
     private Supplier supplier;
 
     /**
-     * Constructor for objects of class Item
+     * Konstruktor untuk objek dari kelas Item
      */
     public Item()
     {
@@ -30,10 +30,9 @@ public class Item
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Method getter untuk mengambil data
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @return    id
      */
     public int getId()
     {
@@ -41,56 +40,109 @@ public class Item
         return id;
     }
     
+    /**
+     * Method getter untuk mengambil data
+     *
+     * @return    name
+     */
     public String getName()
     {
         return name;
     }
     
+    /**
+     * Method getter untuk mengambil data
+     *
+     * @return    stock
+     */
     public int getStock()
     {
         return stock;
     }
     
+    /**
+     * Method getter untuk mengambil data
+     *
+     * @return    price
+     */
     public int getPrice()
     {
         return price;
     }
     
+    /**
+     * Method getter untuk mengambil data
+     *
+     * @return    category
+     */
     public String getCategory()
     {
         return category;
     }
     
+    /**
+     * Method getter untuk mengambil data
+     *
+     * @return    supplier
+     */
     public Supplier getSupplier()
     {
         return supplier;
     }
     
+    /**
+     * Method setter untuk menentukan data
+     *
+     * @param id 
+     */
     public void setId(int id)
     {
         this.id = id;
     }
     
+    /**
+     * Method setter untuk menentukan data
+     *
+     * @param name 
+     */
     public void setName(String name)
     {
         this.name = name;
     }
     
+    /**
+     * Method setter untuk menentukan data
+     *
+     * @param stock 
+     */
     public void setStock(int stock)
     {
         this.stock = stock;
     }
     
+    /**
+     * Method setter untuk menentukan data
+     *
+     * @param price 
+     */
     public void setPrice(int price)
     {
         this.price = price;
     }
     
+    /**
+     * Method setter untuk menentukan data
+     *
+     * @param category 
+     */
     public void setCategory(String category)
     {
         this.category = category;
     }
     
+    /**
+     * Method printData untuk memunculkan data
+     */
     public void printData()
     {
         System.out.println("Item ID: "+id);

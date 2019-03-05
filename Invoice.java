@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Invoice here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Ini adalah kelas Invoice. Kelas ini digunakan untuk
+ * membuat invoice.
+ * @author (Muhammad Haqy Aunoora)
+ * @version (28 Februari 2019)
  */
 public class Invoice
 {
@@ -14,7 +14,7 @@ public class Invoice
     private int totalPrice;
 
     /**
-     * Constructor for objects of class Invoice
+     * Konstruktor untuk objek dari kelas Invoice
      */
     public Invoice()
     {
@@ -26,10 +26,9 @@ public class Invoice
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Method getter untuk mengambil data
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @return    id
      */
     public int getId()
     {
@@ -37,41 +36,80 @@ public class Invoice
         return id;
     }
     
+    /**
+     * Method getter untuk mengambil data
+     *
+     * @return    item
+     */
     public Item getItem()
     {
         return item;
     }
     
+    /**
+     * Method getter untuk mengambil data
+     *
+     * @return    date
+     */
     public String getDate()
     {
         return date;
     }
     
+    /**
+     * Method getter untuk mengambil data
+     *
+     * @return    totalPrice
+     */
     public int getTotalPrice()
     {
         return totalPrice;
     }
     
+    
+    /**
+     * Method setter untuk menentukan data
+     *
+     * @param id 
+     */
     public void setId(int id)
     {
         this.id = id;
     }
     
+    /**
+     * Method setter untuk menentukan data
+     *
+     * @param item 
+     */
     public void setItem(Item item)
     {
         this.item = item;
     }
     
+    /**
+     * Method setter untuk menentukan data
+     *
+     * @param date 
+     */
     public void setDate(String date)
     {
         this.date = date;
     }
     
+    /**
+     * Method setter untuk menentukan data
+     *
+     * @param totalPrice 
+     */
     public void setTotalPrice(int totalPrice)
     {
         this.totalPrice = totalPrice;
     }
     
+    /**
+     * Method printData untuk memunculkan data
+     */
     public void printData()
     {
         System.out.println("Transaction ID: "+id);

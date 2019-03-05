@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class DatabaseItem here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Ini adalah kelas DatabaseItem. Kelas ini digunakan untuk
+ * database kelas Item.
+ * @author (Muhammad Haqy Aunoora)
+ * @version (28 Februari 2019)
  */
 public class DatabaseItem
 {
@@ -12,7 +12,7 @@ public class DatabaseItem
     private Item item;
 
     /**
-     * Constructor for objects of class DatabaseItem
+     * Konstruktor untuk objek dari kelas DatabaseItem
      */
     public DatabaseItem()
     {
@@ -22,10 +22,10 @@ public class DatabaseItem
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Method untuk menambah data item
+     * 
+     * @param item
+     * @return    true
      */
     public boolean addItem(Item item)
     {
@@ -33,16 +33,32 @@ public class DatabaseItem
         return true;
     }
     
+    /**
+     * Method untuk menghapus data item
+     * 
+     * @param item
+     * @return    true
+     */
     public boolean removeItem(Item item)
     {
         return true;
     }
     
+    /**
+     * Method untuk menambah data
+     * 
+     * @return    item
+     */
     public Item getItem()
     {
         return item;
     }
     
+    /**
+     * Method untuk menambah data itemDatabase
+     * 
+     * @return    listItem
+     */
     public String[] getItemDatabase()
     {
         return listItem;

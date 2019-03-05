@@ -1,9 +1,10 @@
 
 /**
- * Write a description of class Location here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Ini adalah kelas Location. Kelas ini digunakan untuk mendata
+ * lokasi yang ada supplier dan hal-hal yang bersangkutan
+ * dengannya.
+ * @author (Muhammad Haqy Aunoora)
+ * @version (28 Februari 2019)
  */
 public class Location
 {
@@ -13,7 +14,7 @@ public class Location
     private String city;
 
     /**
-     * Constructor for objects of class Location
+     * Konstruktor untuk objek dari kelas Supplier
      */
     public Location()
     {
@@ -24,10 +25,9 @@ public class Location
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Method getter untuk mengambil data
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @return    province
      */
     public String getProvince()
     {
@@ -35,31 +35,59 @@ public class Location
         return province;
     }
     
+    /**
+     * Method getter untuk mengambil data
+     *
+     * @return    city
+     */
     public String getCity()
     {
         return city;
     }
     
+    /**
+     * Method getter untuk mengambil data
+     *
+     * @return    description
+     */
     public String getDescription()
     {
         return description;
     }
     
+    /**
+     * Method setter untuk menentukan data
+     *
+     * @param province
+     */
     public void setProvince(String province)
     {
         this.province = province;
     }
     
+    /**
+     * Method setter untuk menentukan data
+     *
+     * @param city 
+     */
     public void setCity(String city)
     {
         this.city = city;
     }
     
+    /**
+     * Method setter untuk menentukan data
+     *
+     * @param description 
+     */
     public void setDescription(String description)
     {
         this.description = description;
     }
     
+    /**
+     * Method printData untuk memunculkan data
+     */
     public void printData()
     {
         System.out.println("Province: "+province);
