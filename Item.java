@@ -18,15 +18,15 @@ public class Item
     /**
      * Konstruktor untuk objek dari kelas Item
      */
-    public Item()
+    public Item(int id, String name, int stock, int price, String category, Supplier supplier)
     {
         // initialise instance variables
-        int id;
-        String name;
-        int stock;
-        int price;
-        String category;
-        Supplier suplier;
+        this.id=id;
+        this.name=name;
+        this.stock=stock;
+        this.price=price;
+        this.category=category;
+        this.supplier=supplier;
     }
 
     /**

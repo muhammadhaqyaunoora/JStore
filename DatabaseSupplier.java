@@ -27,7 +27,7 @@ public class DatabaseSupplier
      * @param supplier
      * @return    true
      */
-    public boolean addSupplier(Supplier supplier)
+    public static boolean addSupplier(Supplier supplier)
     {
         // put your code here
         return true;

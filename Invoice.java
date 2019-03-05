@@ -16,13 +16,13 @@ public class Invoice
     /**
      * Konstruktor untuk objek dari kelas Invoice
      */
-    public Invoice()
+    public Invoice(int id, Item item, String date, int totalPrice)
     {
         // initialise instance variables
-        int id;
-        Item item;
-        String date;
-        int totalPrice;
+        this.id=id;
+        this.item=item;
+        this.date=date;
+        this.totalPrice=totalPrice;
     }
 
     /**

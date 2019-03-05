@@ -16,12 +16,12 @@ public class Location
     /**
      * Konstruktor untuk objek dari kelas Supplier
      */
-    public Location()
+    public Location(String city, String province, String description)
     {
         // initialise instance variables
-        String city;
-        String province;
-        String description;
+        this.city = city;
+        this.province = province;
+        this.description = description;
     }
 
     /**
