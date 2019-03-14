@@ -12,18 +12,20 @@ public class Item
     private String name;
     private int stock;
     private int price;
-    private String category;
+    private ItemCategory category;
+    private ItemStatus status;
     private Supplier supplier;
 
     /**
      * Konstruktor untuk objek dari kelas Item
      */
-    public Item(int id, String name, int stock, int price, String category, Supplier supplier)
+    public Item(int id, String name, int stock, ItemStatus status, int price, ItemCategory category, Supplier supplier)
     {
         // initialise instance variables
         this.id=id;
         this.name=name;
         this.stock=stock;
+        this.status=status;
         this.price=price;
         this.category=category;
         this.supplier=supplier;
@@ -75,7 +77,7 @@ public class Item
      *
      * @return    category
      */
-    public String getCategory()
+    public ItemCategory getCategory()
     {
         return category;
     }
@@ -88,6 +90,11 @@ public class Item
     public Supplier getSupplier()
     {
         return supplier;
+    }
+    
+    public ItemStatus getStatus()
+    {
+        return status;
     }
     
     /**
@@ -135,9 +142,19 @@ public class Item
      *
      * @param category 
      */
-    public void setCategory(String category)
+    public void setCategory(ItemCategory category)
     {
         this.category = category;
+    }
+    
+    public void setStatus(ItemStatus status)
+    {
+        this.status = status;
+    }
+    
+    public void setSupplier(Supplier supplier)
+    {
+        this.supplier = supplier;
     }
     
     /**
@@ -145,10 +162,10 @@ public class Item
      */
     public void printData()
     {
-        System.out.println("Item ID: "+id);
+        System.out.println("=======ITEM "+id+"=======");
         System.out.println("Item Name: "+name);
-        System.out.println("Stock: "+stock);
         System.out.println("Category: "+category);
+        System.out.println("Status: "+status);
         System.out.println("Supplier: "+supplier);
     }
 }

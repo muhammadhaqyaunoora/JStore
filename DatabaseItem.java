@@ -9,7 +9,7 @@ public class DatabaseItem
 {
     // instance variables - replace the example below with your own
     private String[] listItem;
-    private Item item;
+    public static Item itemDB;
 
     /**
      * Konstruktor untuk objek dari kelas DatabaseItem
@@ -18,7 +18,7 @@ public class DatabaseItem
     {
         // initialise instance variables
         String[] listItem;
-        Item item;
+        Item itemDB;
     }
 
     /**
@@ -51,7 +51,7 @@ public class DatabaseItem
      */
     public Item getItem()
     {
-        return item;
+        return itemDB;
     }
     
     /**

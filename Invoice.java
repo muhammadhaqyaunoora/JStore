@@ -12,17 +12,21 @@ public class Invoice
     private Item item;
     private String date;
     private int totalPrice;
+    private int totalItem;
+    private InvoiceStatus status;
 
     /**
      * Konstruktor untuk objek dari kelas Invoice
      */
-    public Invoice(int id, Item item, String date, int totalPrice)
+    public Invoice(int id, Item item, String date, int totalPrice, int totalItem, InvoiceStatus status)
     {
         // initialise instance variables
         this.id=id;
         this.item=item;
         this.date=date;
         this.totalPrice=totalPrice;
+        this.totalItem=totalItem;
+        this.status=status;
     }
 
     /**
@@ -66,6 +70,15 @@ public class Invoice
         return totalPrice;
     }
     
+    public int getTotalItem()
+    {
+        return totalItem;
+    }
+    
+    public InvoiceStatus getInvoiceStatus()
+    {
+        return status;
+    }
     
     /**
      * Method setter untuk menentukan data
@@ -107,14 +120,25 @@ public class Invoice
         this.totalPrice = totalPrice;
     }
     
+    public void setTotalItem(int totalItem)
+    {
+        this.totalItem = totalItem;
+    }
+    
+    public void setInvoiceStatus(InvoiceStatus status)
+    {
+        this.status = status;
+    }
+    
     /**
      * Method printData untuk memunculkan data
      */
     public void printData()
     {
-        System.out.println("Transaction ID: "+id);
-        System.out.println("Item: "+item);
+        System.out.println("=====Invoice "+id+"=====");
         System.out.println("Date: "+date);
+        System.out.println("Item: "+item);
         System.out.println("Total: "+totalPrice);
+        System.out.println("Status: "+status);
     }
 }
