@@ -5,20 +5,21 @@
  * @author (Muhammad Haqy Aunoora)
  * @version (28 Februari 2019)
  */
-public class Invoice
+public abstract class Invoice
 {
     // instance variables - replace the example below with your own
     private int id;
     private Item item;
     private String date;
-    private int totalPrice;
+    protected int totalPrice;
     private int totalItem;
     private InvoiceStatus status;
+    private InvoiceType type;
 
     /**
      * Konstruktor untuk objek dari kelas Invoice
      */
-    public Invoice(int id, Item item, String date, int totalPrice, int totalItem, InvoiceStatus status)
+    public Invoice(int id, Item item, String date, int totalPrice, int totalItem)
     {
         // initialise instance variables
         this.id=id;
@@ -26,7 +27,6 @@ public class Invoice
         this.date=date;
         this.totalPrice=totalPrice;
         this.totalItem=totalItem;
-        this.status=status;
     }
 
     /**
@@ -78,6 +78,11 @@ public class Invoice
     public InvoiceStatus getInvoiceStatus()
     {
         return status;
+    }
+    
+    public InvoiceType getInvoiceType()
+    {
+        return type;
     }
     
     /**
@@ -133,12 +138,5 @@ public class Invoice
     /**
      * Method printData untuk memunculkan data
      */
-    public void printData()
-    {
-        System.out.println("=====Invoice "+id+"=====");
-        System.out.println("Date: "+date);
-        System.out.println("Item: "+item);
-        System.out.println("Total: "+totalPrice);
-        System.out.println("Status: "+status);
-    }
+    public abstract void printData();
 }

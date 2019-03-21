@@ -13,58 +13,45 @@ public class Transaction
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public void orderNewItem(Supplier supplier)
+    public void orderNewItem(Item item)
     {
         // put your code here
-        Item item = new Item(2,"LED",100,ItemStatus.New,10000,ItemCategory.Electronics,supplier);
-        DatabaseItem.itemDB = item;
-        Invoice invoice = new Invoice(2,item,"14 Maret 2019",item.getPrice(),10,InvoiceStatus.Paid);
-        item.setStatus(ItemStatus.New);
-        invoice.setInvoiceStatus(InvoiceStatus.Paid);
-        item.printData();
+        Invoice bp = new Buy_Paid (1, item, "March 21st 2019", 3, item.getPrice());
+        if (bp instanceof Sell_Paid)
+        {
+            System.out.println("Benar Invoice Type adalah Sell_Paid");
+        }
+        else
+        {
+            System.out.println("Salah Invoice Type bukan Sell_Paid");
+        }
     }
     
-    public void orderSecondItem(Supplier supplier)
+    public void orderSecondItem(Item item)
     {
-        Item item = new Item(2,"LED",100,ItemStatus.Second,10000,ItemCategory.Electronics,supplier);
-        DatabaseItem.itemDB = item;
-        Invoice invoice = new Invoice(2,item,"14 Maret 2019",item.getPrice(),10,InvoiceStatus.Paid);
-        item.setStatus(ItemStatus.Second);
-        invoice.setInvoiceStatus(InvoiceStatus.Paid);
-        item.printData();
+        Invoice bp = new Buy_Paid (1, item, "March 21st 2019", 3, item.getPrice());
     }
     
-    public void orderRefurbishedItem(Supplier supplier)
+    public void orderRefurbishedItem(Item item)
     {
-        Item item = new Item(2,"LED",100,ItemStatus.Refurbished,10000,ItemCategory.Electronics,supplier);
-        DatabaseItem.itemDB = item;
-        Invoice invoice = new Invoice(2,item,"14 Maret 2019",item.getPrice(),10,InvoiceStatus.Paid);
-        item.setStatus(ItemStatus.Refurbished);
-        invoice.setInvoiceStatus(InvoiceStatus.Paid);
-        item.printData();
+        Invoice bp = new Buy_Paid (1, item, "March 21st 2019", 3, item.getPrice());
     }
     
-    public void sellITemPaid(Item item)
+    public void sellItemPaid(Item item)
     {
-        Invoice invoice = new Invoice(2,item,"14 Maret 2019",item.getPrice(),10,InvoiceStatus.Paid);
-        invoice.setInvoiceStatus(InvoiceStatus.Paid);
-        item.setStatus(ItemStatus.Sold);
+        Invoice sp = new Sell_Paid (2, item, "March 21st 2019", 1, item.getPrice());
         item.printData();
     }
     
     public void sellItemUnpaid(Item item)
     {
-        Invoice invoice = new Invoice(2,item,"14 Maret 2019",item.getPrice(),10,InvoiceStatus.Unpaid);
-        invoice.setInvoiceStatus(InvoiceStatus.Unpaid);
-        item.setStatus(ItemStatus.Sold);
+        Invoice su = new Sell_Unpaid (3, item, "March 21st 2019", 5, item.getPrice(), "March 31st 2019");
         item.printData();
     }
     
     public void sellItemInstallment(Item item)
     {
-        Invoice invoice = new Invoice(2,item,"14 Maret 2019",item.getPrice(),10,InvoiceStatus.Installment);
-        invoice.setInvoiceStatus(InvoiceStatus.Installment);
-        item.setStatus(ItemStatus.Sold);
+        Invoice si = new Sell_Installment (4, item, "March 21st 2019", 6, item.getPrice(), 12);
         item.printData();
     }
 }
