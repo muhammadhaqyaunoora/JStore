@@ -5,28 +5,27 @@
  * @author (Muhammad Haqy Aunoora)
  * @version (28 Februari 2019)
  */
+import java.util.Calendar;
+
 public abstract class Invoice
 {
     // instance variables - replace the example below with your own
     private int id;
     private Item item;
-    private String date;
-    protected int totalPrice;
+    private Calendar date;
+    private int totalPrice;
     private int totalItem;
-    private InvoiceStatus status;
-    private InvoiceType type;
-
+    
     /**
      * Konstruktor untuk objek dari kelas Invoice
      */
-    public Invoice(int id, Item item, String date, int totalPrice, int totalItem)
+    public Invoice(int id, Item item, int totalItem)
     {
         // initialise instance variables
         this.id=id;
         this.item=item;
-        this.date=date;
-        this.totalPrice=totalPrice;
         this.totalItem=totalItem;
+        setTotalPrice(item.getPrice()*totalItem);
     }
 
     /**
@@ -55,7 +54,7 @@ public abstract class Invoice
      *
      * @return    date
      */
-    public String getDate()
+    public Calendar getDate()
     {
         return date;
     }
@@ -75,15 +74,9 @@ public abstract class Invoice
         return totalItem;
     }
     
-    public InvoiceStatus getInvoiceStatus()
-    {
-        return status;
-    }
+    public abstract InvoiceStatus getInvoiceStatus();
     
-    public InvoiceType getInvoiceType()
-    {
-        return type;
-    }
+    public abstract InvoiceType getInvoiceType();
     
     /**
      * Method setter untuk menentukan data
@@ -110,7 +103,7 @@ public abstract class Invoice
      *
      * @param date 
      */
-    public void setDate(String date)
+    public void setDate(Calendar date)
     {
         this.date = date;
     }
@@ -132,11 +125,8 @@ public abstract class Invoice
     
     public void setInvoiceStatus(InvoiceStatus status)
     {
-        this.status = status;
+    //    this.status = status;
     }
     
-    /**
-     * Method printData untuk memunculkan data
-     */
-    public abstract void printData();
+    public abstract String toString();
 }

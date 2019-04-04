@@ -157,15 +157,8 @@ public class Item
         this.supplier = supplier;
     }
     
-    /**
-     * Method printData untuk memunculkan data
-     */
-    public void printData()
+    public String toString()
     {
-        System.out.println("=======ITEM "+id+"=======");
-        System.out.println("Item Name: "+name);
-        System.out.println("Category: "+category);
-        System.out.println("Status: "+status);
-        System.out.println("Supplier: "+supplier);
+        
     }
 }

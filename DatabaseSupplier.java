@@ -8,18 +8,7 @@
 public class DatabaseSupplier
 {
     // instance variables - replace the example below with your own
-    private String[] listSupplier;
-    private Supplier supplier;
-
-    /**
-     * Konstruktor untuk objek dari kelas DatabaseSupplier
-     */
-    public DatabaseSupplier()
-    {
-        // initialise instance variables
-        String[] listSupplier;
-        Supplier supplier;
-    }
+    private Supplier[] listSupplier;
 
     /**
      * Method untuk menambah data supplier
@@ -27,7 +16,7 @@ public class DatabaseSupplier
      * @param supplier
      * @return    true
      */
-    public static boolean addSupplier(Supplier supplier)
+    public boolean addSupplier(Supplier supplier)
     {
         // put your code here
         return true;
@@ -39,9 +28,9 @@ public class DatabaseSupplier
      * @param supplier
      * @return    true
      */
-    public boolean removeSupplier(Supplier supplier)
+    public void removeSupplier(Supplier supplier)
     {
-        return true;
+        this.supplier=supplier;
     }
     
     /**
@@ -58,7 +47,7 @@ public class DatabaseSupplier
      * Method getter untuk mengambil data
      * 
      * @return    listSupplier
-     */public String[] getListSupplier()
+     */public Supplier[] getListSupplier()
     {
         return listSupplier;
     }

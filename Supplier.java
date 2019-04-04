@@ -128,15 +128,8 @@ public class Supplier
         this.location = location;
     }
     
-    /**
-     * Method printData untuk memunculkan data
-     */
-    public void printData()
+    public String toString()
     {
-        System.out.println("=====SUPPLIER "+id+"=====");
-        System.out.println("Supplier Name: "+name);
-        System.out.println("Email: "+email);
-        System.out.println("Phone Number: "+phoneNumber);
-        System.out.println("Location: "+location);
+        
     }
 }

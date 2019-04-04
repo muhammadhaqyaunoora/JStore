@@ -8,15 +8,15 @@
 public class Buy_Paid extends Invoice
 {
     // instance variables - replace the example below with your own
-    private InvoiceType INVOICE_TYPE=InvoiceType.Buy;
-    private InvoiceStatus INVOICE_STATUS=InvoiceStatus.Paid;
+    private static InvoiceType INVOICE_TYPE=InvoiceType.Buy;
+    private static InvoiceStatus INVOICE_STATUS=InvoiceStatus.Paid;
     /**
      * Constructor for objects of class Buy_Paid
      */
-    public Buy_Paid(int id, Item item, String date, int totalItem, int totalPrice)
+    public Buy_Paid(int id, Item item, int totalItem)
     {
         // initialise instance variables
-        super(id, item, date, totalItem, totalPrice);
+        super(id, item, totalItem);
         
     }
 
@@ -37,11 +37,8 @@ public class Buy_Paid extends Invoice
         return INVOICE_TYPE;
     }
     
-    public void printData()
+    public String toString()
     {
-        System.out.println("=====Invoice=====");
-        System.out.println("Total: "+totalPrice);
-        System.out.println("Status: "+INVOICE_STATUS);
-        System.out.println("Type: "+INVOICE_TYPE);
+        
     }
 }

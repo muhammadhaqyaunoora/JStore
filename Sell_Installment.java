@@ -5,21 +5,26 @@
  * @author (your name)
  * @version (a version number or a date)
  */
+import java.util.Calendar;
+
 public class Sell_Installment extends Invoice
 {
     // instance variables - replace the example below with your own
-    private InvoiceType INVOICE_TYPE=InvoiceType.Sell;
-    private InvoiceStatus INVOICE_STATUS=InvoiceStatus.Installment;
+    private static InvoiceType INVOICE_TYPE=InvoiceType.Sell;
+    private static InvoiceStatus INVOICE_STATUS=InvoiceStatus.Installment;
     private int installmentPeriod;
     private int installmentPrice;
+    private Customer customer;
+    
     /**
      * Constructor for objects of class Sell_Installment
      */
-    public Sell_Installment(int id, Item item, String date, int totalItem, int totalPrice, int installmentPeriod)
+    public Sell_Installment(int id, Item item, int totalItem, int installmentPeriod, Customer customer)
     {
         // initialise instance variables
-        super(id, item, date, totalItem, totalPrice);
+        super(id, item, totalItem);
         this.installmentPeriod=installmentPeriod;
+        this.customer=customer;
     }
 
     /**
@@ -39,6 +44,11 @@ public class Sell_Installment extends Invoice
         return installmentPrice;
     }
     
+    public Customer getCustomer()
+    {
+        return customer;
+    }
+    
     public InvoiceStatus getInvoiceStatus()
     {
         // put your code here
@@ -52,20 +62,21 @@ public class Sell_Installment extends Invoice
     
     public void setInstallmentPrice()
     {
-        installmentPrice=totalPrice/installmentPeriod*102/100;
+    //    installmentPrice=totalPrice/installmentPeriod*102/100;
     }
     
     public void setTotalPrice()
     {
-        totalPrice=installmentPrice*installmentPeriod;
+    //    totalPrice=installmentPrice*installmentPeriod;
     }
     
-    public void printData()
+    public void setCustomer(Customer customer)
     {
-        System.out.println("=====Invoice=====");
-        System.out.println("Total: "+totalPrice);
-        System.out.println("Status: "+INVOICE_STATUS);
-        System.out.println("Type: "+INVOICE_TYPE);
-        System.out.println("Installment Price: "+installmentPrice);
+        this.customer=customer;
+    }
+    
+    public String toString()
+    {
+        
     }
 }

@@ -8,16 +8,18 @@
 public class Sell_Paid extends Invoice
 {
     // instance variables - replace the example below with your own
-    private InvoiceType INVOICE_TYPE=InvoiceType.Sell;
-    private InvoiceStatus INVOICE_STATUS=InvoiceStatus.Paid;
+    private static InvoiceType INVOICE_TYPE=InvoiceType.Sell;
+    private static InvoiceStatus INVOICE_STATUS=InvoiceStatus.Paid;
+    private Customer customer;
 
     /**
      * Constructor for objects of class Sell_Paid
      */
-    public Sell_Paid(int id, Item item, String date, int totalItem, int totalPrice)
+    public Sell_Paid(int id, Item item, int totalItem, Customer customer)
     {
         // initialise instance variables
-        super(id, item, date, totalItem, totalPrice);
+        super(id, item, totalItem);
+        this.customer=customer;
     }
 
     /**
@@ -26,6 +28,11 @@ public class Sell_Paid extends Invoice
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
+    public Customer getCustomer()
+    {
+        return customer;
+    }
+    
     public InvoiceStatus getInvoiceStatus()
     {
         // put your code here
@@ -37,11 +44,13 @@ public class Sell_Paid extends Invoice
         return INVOICE_TYPE;
     }
     
-    public void printData()
+    public void setCustomer(Customer customer)
     {
-        System.out.println("=====Invoice=====");
-        System.out.println("Total: "+totalPrice);
-        System.out.println("Status: "+INVOICE_STATUS);
-        System.out.println("Type: "+INVOICE_TYPE);
+        this.customer=customer;
+    }
+    
+    public String toString()
+    {
+        
     }
 }

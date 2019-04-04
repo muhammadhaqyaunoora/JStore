@@ -8,18 +8,7 @@
 public class DatabaseItem
 {
     // instance variables - replace the example below with your own
-    private String[] listItem;
-    public static Item itemDB;
-
-    /**
-     * Konstruktor untuk objek dari kelas DatabaseItem
-     */
-    public DatabaseItem()
-    {
-        // initialise instance variables
-        String[] listItem;
-        Item itemDB;
-    }
+    private Item[] listItem;
 
     /**
      * Method untuk menambah data item
@@ -27,7 +16,7 @@ public class DatabaseItem
      * @param item
      * @return    true
      */
-    public boolean addItem(Item item)
+    public static boolean addItem(Item item)
     {
         // put your code here
         return true;
@@ -39,7 +28,7 @@ public class DatabaseItem
      * @param item
      * @return    true
      */
-    public boolean removeItem(Item item)
+    public static boolean removeItem(Item item)
     {
         return true;
     }
@@ -49,7 +38,7 @@ public class DatabaseItem
      * 
      * @return    item
      */
-    public Item getItem()
+    public static Item getItem()
     {
         return itemDB;
     }
@@ -59,7 +48,7 @@ public class DatabaseItem
      * 
      * @return    listItem
      */
-    public String[] getItemDatabase()
+    public Item[] getItemDatabase()
     {
         return listItem;
     }

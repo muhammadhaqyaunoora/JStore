@@ -5,21 +5,24 @@
  * @author (your name)
  * @version (a version number or a date)
  */
+import java.util.Calendar;
+
 public class Sell_Unpaid extends Invoice
 {
     // instance variables - replace the example below with your own
-    private InvoiceType INVOICE_TYPE=InvoiceType.Sell;
-    private InvoiceStatus INVOICE_STATUS=InvoiceStatus.Unpaid;
-    private String dueDate;
+    private static InvoiceType INVOICE_TYPE=InvoiceType.Sell;
+    private static InvoiceStatus INVOICE_STATUS=InvoiceStatus.Unpaid;
+    private Calendar dueDate;
+    private Customer customer;
     
     /**
      * Constructor for objects of class Sell_Unpaid
      */
-    public Sell_Unpaid(int id, Item item, String date, int totalItem, int totalPrice, String dueDate)
+    public Sell_Unpaid(int id, Item item, int totalItem, Customer customer)
     {
         // initialise instance variables
-        super(id, item, date, totalItem, totalPrice);
-        this.dueDate=dueDate;
+        super(id, item, totalItem);
+        this.customer=customer;
     }
 
     /**
@@ -39,17 +42,28 @@ public class Sell_Unpaid extends Invoice
         return INVOICE_TYPE;
     }
     
-    public String getDueDate()
+    public Customer getCustomer()
+    {
+        return customer;
+    }
+    
+    public Calendar getDueDate()
     {
         return dueDate;
     }
     
-    public void printData()
+    public void setCustomer(Customer customer)
     {
-        System.out.println("=====Invoice=====");
-        System.out.println("Total: "+totalPrice);
-        System.out.println("Status: "+INVOICE_STATUS);
-        System.out.println("Type: "+INVOICE_TYPE);
-        System.out.println("Due Date: "+dueDate);
+        this.customer=customer;
+    }
+    
+    public void setDueDate(Calendar dueDate)
+    {
+        this.dueDate=dueDate;
+    }
+    
+    public String toString()
+    {
+        
     }
 }

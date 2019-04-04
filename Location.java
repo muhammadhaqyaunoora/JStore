@@ -85,14 +85,8 @@ public class Location
         this.description = description;
     }
     
-    /**
-     * Method printData untuk memunculkan data
-     */
-    public void printData()
+    public String toString()
     {
-        System.out.println("=========LOCATION=========");
-        System.out.println("Province: "+province);
-        System.out.println("City: "+city);
-        System.out.println("Description: "+description);
+        
     }
 }

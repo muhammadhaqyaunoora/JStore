@@ -13,7 +13,7 @@ public class Transaction
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public void orderNewItem(Item item)
+    public static void orderNewItem(Item item)
     {
         // put your code here
         Invoice bp = new Buy_Paid (1, item, "March 21st 2019", 3, item.getPrice());
@@ -29,35 +29,35 @@ public class Transaction
         bp.printData();
     }
     
-    public void orderSecondItem(Item item)
+    public static void orderSecondItem(Item item)
     {
         Invoice bp = new Buy_Paid (1, item, "March 21st 2019", 3, item.getPrice());
         item.printData();
         bp.printData();
     }
     
-    public void orderRefurbishedItem(Item item)
+    public static void orderRefurbishedItem(Item item)
     {
         Invoice bp = new Buy_Paid (1, item, "March 21st 2019", 3, item.getPrice());
         item.printData();
         bp.printData();
     }
     
-    public void sellItemPaid(Item item)
+    public static void sellItemPaid(Item item, Customer customer)
     {
         Invoice sp = new Sell_Paid (2, item, "March 21st 2019", 1, item.getPrice());
         item.printData();
         sp.printData();
     }
     
-    public void sellItemUnpaid(Item item)
+    public static void sellItemUnpaid(Item item, Customer customer)
     {
         Invoice su = new Sell_Unpaid (3, item, "March 21st 2019", 5, item.getPrice(), "March 31st 2019");
         item.printData();
         su.printData();
     }
     
-    public void sellItemInstallment(Item item)
+    public static void sellItemInstallment(Item item, Customer customer, int installmentPeriod)
     {
         Invoice si = new Sell_Installment (4, item, "March 21st 2019", 6, item.getPrice(), 12);
         item.printData();
