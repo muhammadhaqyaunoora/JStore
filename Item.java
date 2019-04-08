@@ -39,7 +39,7 @@ public class Item
     public int getId()
     {
         // put your code here
-        return id;
+        return this.id;
     }
     
     /**
@@ -49,7 +49,7 @@ public class Item
      */
     public String getName()
     {
-        return name;
+        return this.name;
     }
     
     /**
@@ -59,7 +59,7 @@ public class Item
      */
     public int getStock()
     {
-        return stock;
+        return this.stock;
     }
     
     /**
@@ -69,7 +69,7 @@ public class Item
      */
     public int getPrice()
     {
-        return price;
+        return this.price;
     }
     
     /**
@@ -79,7 +79,7 @@ public class Item
      */
     public ItemCategory getCategory()
     {
-        return category;
+        return this.category;
     }
     
     /**
@@ -89,12 +89,12 @@ public class Item
      */
     public Supplier getSupplier()
     {
-        return supplier;
+        return this.supplier;
     }
     
     public ItemStatus getStatus()
     {
-        return status;
+        return this.status;
     }
     
     /**
@@ -159,6 +159,6 @@ public class Item
     
     public String toString()
     {
-        
+        return "ID: " +id+ "\nName: " +name+ "\nStock: " +stock+ "\nPrice: " +price+ "\nCategory: " +category+ "\nStatus: " +status+ "\nSupplier: " +supplier;
     }
 }

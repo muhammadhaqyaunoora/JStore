@@ -32,7 +32,7 @@ public class Location
     public String getProvince()
     {
         // put your code here
-        return province;
+        return this.province;
     }
     
     /**
@@ -42,7 +42,7 @@ public class Location
      */
     public String getCity()
     {
-        return city;
+        return this.city;
     }
     
     /**
@@ -52,7 +52,7 @@ public class Location
      */
     public String getDescription()
     {
-        return description;
+        return this.description;
     }
     
     /**
@@ -87,6 +87,6 @@ public class Location
     
     public String toString()
     {
-        
+        return "Province: " +province+ "\nCity: " +city+ "\nDescription: " +description;
     }
 }

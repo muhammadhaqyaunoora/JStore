@@ -5,8 +5,6 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-import java.util.Calendar;
-
 public class Sell_Installment extends Invoice
 {
     // instance variables - replace the example below with your own
@@ -77,6 +75,18 @@ public class Sell_Installment extends Invoice
     
     public String toString()
     {
-        
+        return "===== INVOICE =====" +
+            "ID: "+this.getId() +
+            "Item: "+this.getItem().getName() +
+            "Amount:" +this.getTotalItem()+
+            "Buy Date: "+this.getDate() +
+            "Price: " + this.getItem().getPrice()+
+            "Total Price: " +this.getTotalPrice() +
+            "Supplier ID: " +this.getItem().getSupplier().getId()+
+            "Supplier Name: " +this.getItem().getSupplier().getName()+
+            "Customer ID: " +this.getCustomer().getId()+
+            "Customer Name: " +this.getCustomer().getName()+
+            "Installment Period: "+this.getInstallmentPeriod()+
+            "Status: "+this.INVOICE_STATUS +"Sell success";
     }
 }

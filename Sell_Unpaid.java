@@ -5,7 +5,7 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-import java.util.Calendar;
+import java.util.*;
 
 public class Sell_Unpaid extends Invoice
 {
@@ -23,6 +23,7 @@ public class Sell_Unpaid extends Invoice
         // initialise instance variables
         super(id, item, totalItem);
         this.customer=customer;
+        this.dueDate.add(Calendar.DATE,1);
     }
 
     /**
@@ -64,6 +65,18 @@ public class Sell_Unpaid extends Invoice
     
     public String toString()
     {
-        
+        return "===== INVOICE =====" +
+            "ID: "+this.getId() +
+            "Item: "+this.getItem().getName() +
+            "Amount:" +this.getTotalItem()+
+            "Buy Date: "+this.getDate() +
+            "Price: " + this.getItem().getPrice()+
+            "Total Price: " +this.getTotalPrice() +
+            "Supplier ID: " +this.getItem().getSupplier().getId()+
+            "Supplier Name: " +this.getItem().getSupplier().getName()+
+            "Customer ID: " +this.getCustomer().getId()+
+            "Customer Name: " +this.getCustomer().getName()+
+            "Due Date:" +this.getDueDate()+
+            "Status: "+this.INVOICE_STATUS +"Sell success";
     }
 }

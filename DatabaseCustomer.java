@@ -24,13 +24,13 @@ public class DatabaseCustomer
     
     public void removeCustomer(Customer customer)
     {
-        this.customer=customer;
+        
     }
     
-    public Customer getCustomer()
-    {
-        return customer;
-    }
+    //public Customer getCustomer()
+    //{
+    //    return customer;
+    //}
     
     public Customer[] getListCustomer()
     {

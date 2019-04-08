@@ -9,6 +9,7 @@ public class DatabaseItem
 {
     // instance variables - replace the example below with your own
     private Item[] listItem;
+    public static Item itemDB;
 
     /**
      * Method untuk menambah data item

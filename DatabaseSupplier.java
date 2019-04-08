@@ -30,7 +30,7 @@ public class DatabaseSupplier
      */
     public void removeSupplier(Supplier supplier)
     {
-        this.supplier=supplier;
+        
     }
     
     /**
@@ -38,10 +38,10 @@ public class DatabaseSupplier
      * 
      * @return    supplier
      */
-    public Supplier getSupplier()
-    {
-        return supplier;
-    }
+    //public Supplier getSupplier()
+    //{
+    //    return supplier;
+    //}
     
     /**
      * Method getter untuk mengambil data

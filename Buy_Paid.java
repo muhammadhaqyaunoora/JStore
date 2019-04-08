@@ -39,6 +39,15 @@ public class Buy_Paid extends Invoice
     
     public String toString()
     {
-        
+        return "===== INVOICE =====" +
+            "ID: "+this.getId() +
+            "Item: "+this.getItem().getName() +
+            "Amount:" +this.getTotalItem()+
+            "Buy Date: "+this.getDate() +
+            "Price: " + this.getItem().getPrice()+
+            "Total Price: " +this.getTotalPrice() +
+            "Supplier ID: " +this.getItem().getSupplier().getId()+
+            "Supplier Name: " +this.getItem().getSupplier().getName()+
+            "Status: "+this.INVOICE_STATUS +" Buy Success";
     }
 }

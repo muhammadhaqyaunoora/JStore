@@ -24,13 +24,13 @@ public class DatabaseInvoice
     
     public void removeInvoice(Invoice invoice)
     {
-        this.invoice=invoice;
+        
     }
     
-    public Invoice getInvoice()
-    {
-        return invoice;
-    }
+    //public Invoice getInvoice()
+    //{
+    //    return invoice;
+    //}
     
     public Invoice[] getListInvoice()
     {

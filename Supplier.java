@@ -35,7 +35,7 @@ public class Supplier
     public int getId()
     {
         // put your code here
-        return id;
+        return this.id;
     }
     
     /**
@@ -45,7 +45,7 @@ public class Supplier
      */
     public String getName()
     {
-        return name;
+        return this.name;
     }
     
     /**
@@ -55,7 +55,7 @@ public class Supplier
      */
     public String getEmail()
     {
-        return email;
+        return this.email;
     }
     
     /**
@@ -65,7 +65,7 @@ public class Supplier
      */
     public String getPhoneNumber()
     {
-        return phoneNumber;
+        return this.phoneNumber;
     }
     
     /**
@@ -75,7 +75,7 @@ public class Supplier
      */
     public Location getLocation()
     {
-        return location;
+        return this.location;
     }
     
     /**
@@ -130,6 +130,6 @@ public class Supplier
     
     public String toString()
     {
-        
+        return "ID: " +id+ "\nName: " +name+ "\nEmail: " +email+ "\nPhone Number: " +phoneNumber+ "\nLocation: "+location.getCity();
     }
 }
