@@ -5,6 +5,8 @@
  * @author (your name)
  * @version (a version number or a date)
  */
+import java.util.ArrayList;
+
 public class Transaction
 {
     /**
@@ -15,52 +17,79 @@ public class Transaction
      */
     public static void orderNewItem(Item item)
     {
-        // put your code here
-        //Invoice bp = new Buy_Paid (1, item, "March 21st 2019", 3, item.getPrice());
-        //if (bp instanceof Sell_Paid)
-        //{
-        //    System.out.println("Benar Invoice Type adalah Sell_Paid");
-        //}
-        //else
-        //{
-        //    System.out.println("Salah Invoice Type bukan Sell_Paid");
-        //}
-        //item.printData();
-        //bp.printData();
+        ArrayList<Integer> temp = new ArrayList<>();
+        temp.add(item.getId());
+        Invoice inv = new Buy_Paid(temp);
+        DatabaseInvoice.addInvoice(inv);
     }
     
     public static void orderSecondItem(Item item)
     {
-        //Invoice bp = new Buy_Paid (1, item, "March 21st 2019", 3, item.getPrice());
-        //tem.printData();
-        //bp.printData();
+        ArrayList<Integer> temp = new ArrayList<>();
+        temp.add(item.getId());
+        Invoice inv = new Buy_Paid(temp);
+        DatabaseInvoice.addInvoice(inv); 
     }
     
     public static void orderRefurbishedItem(Item item)
     {
-        //Invoice bp = new Buy_Paid (1, item, "March 21st 2019", 3, item.getPrice());
-        //item.printData();
-        //bp.printData();
+        ArrayList<Integer> temp = new ArrayList<>();
+        temp.add(item.getId());
+        Invoice inv = new Buy_Paid(temp);
+        DatabaseInvoice.addInvoice(inv);
     }
     
     public static void sellItemPaid(Item item, Customer customer)
     {
-        //Invoice sp = new Sell_Paid (2, item, "March 21st 2019", 1, item.getPrice());
-        //item.printData();
-        //sp.printData();
+        ArrayList<Integer> temp = new ArrayList<>();
+        temp.add(item.getId());
+        Invoice inv = new Sell_Paid(temp, customer);
+        DatabaseInvoice.addInvoice(inv);
     }
     
     public static void sellItemUnpaid(Item item, Customer customer)
     {
-        //Invoice su = new Sell_Unpaid (3, item, "March 21st 2019", 5, item.getPrice(), "March 31st 2019");
-        //item.printData();
-        //su.printData();
+        ArrayList<Integer> temp = new ArrayList<>();
+        temp.add(item.getId());
+        Invoice inv = new Sell_Unpaid(temp, customer);
+        DatabaseInvoice.addInvoice(inv);
     }
     
     public static void sellItemInstallment(Item item, Customer customer, int installmentPeriod)
     {
-        //Invoice si = new Sell_Installment (4, item, "March 21st 2019", 6, item.getPrice(), 12);
-        //item.printData();
-        //si.printData();
+        ArrayList<Integer> temp = new ArrayList<>();
+        temp.add(item.getId());
+        Invoice inv = new Sell_Installment(temp,12,customer);
+        DatabaseInvoice.addInvoice(inv);
+    }
+    
+    public boolean finishTransaction(Invoice invoice)
+    {
+        ArrayList<Invoice> invDb = DatabaseInvoice.getInvoiceDatabase();
+        for(int i=0;i<invDb.size();i++)
+        {
+            if(invDb.get(i).getId()==invoice.getId())
+            {
+                invoice.setIsActive(false);
+                invDb.set(i,invoice);
+                System.out.println(invoice.toString());
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean cancelTransaction(Invoice invoice)
+    {
+        ArrayList<Invoice> invDb = DatabaseInvoice.getInvoiceDatabase();
+        for(Invoice inv : invDb)
+        {
+            if(inv.getId() == invoice.getId())
+            {
+                invDb.remove(inv);
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -6,6 +6,7 @@
  * @version (a version number or a date)
  */
 import java.util.*;
+import java.util.ArrayList;
 
 public class Sell_Unpaid extends Invoice
 {
@@ -14,16 +15,18 @@ public class Sell_Unpaid extends Invoice
     private static InvoiceStatus INVOICE_STATUS=InvoiceStatus.Unpaid;
     private Calendar dueDate;
     private Customer customer;
+    private boolean isActive;
     
     /**
      * Constructor for objects of class Sell_Unpaid
      */
-    public Sell_Unpaid(int id, Item item, int totalItem, Customer customer)
+    public Sell_Unpaid(ArrayList<Integer> item, Customer customer)
     {
         // initialise instance variables
-        super(id, item, totalItem);
+        super(item);
         this.customer=customer;
         this.dueDate.add(Calendar.DATE,1);
+        this.isActive=true;
     }
 
     /**
@@ -65,18 +68,12 @@ public class Sell_Unpaid extends Invoice
     
     public String toString()
     {
-        return "===== INVOICE =====" +
-            "ID: "+this.getId() +
-            "Item: "+this.getItem().getName() +
-            "Amount:" +this.getTotalItem()+
-            "Buy Date: "+this.getDate() +
-            "Price: " + this.getItem().getPrice()+
-            "Total Price: " +this.getTotalPrice() +
-            "Supplier ID: " +this.getItem().getSupplier().getId()+
-            "Supplier Name: " +this.getItem().getSupplier().getName()+
-            "Customer ID: " +this.getCustomer().getId()+
-            "Customer Name: " +this.getCustomer().getName()+
-            "Due Date:" +this.getDueDate()+
-            "Status: "+this.INVOICE_STATUS +"Sell success";
+        String text = "";
+        for (int object : getItem())
+        {
+            System.out.println(DatabaseItem.getItemFromID(object));
+            text = text+object;
+        }
+        return text;
     }
 }

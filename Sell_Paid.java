@@ -6,6 +6,7 @@
  * @version (a version number or a date)
  */
 import java.util.*;
+import java.util.ArrayList;
 
 public class Sell_Paid extends Invoice
 {
@@ -13,15 +14,17 @@ public class Sell_Paid extends Invoice
     private static InvoiceType INVOICE_TYPE=InvoiceType.Sell;
     private static InvoiceStatus INVOICE_STATUS=InvoiceStatus.Paid;
     private Customer customer;
+    private boolean isActive;
 
     /**
      * Constructor for objects of class Sell_Paid
      */
-    public Sell_Paid(int id, Item item, int totalItem, Customer customer)
+    public Sell_Paid(ArrayList<Integer> item, Customer customer)
     {
         // initialise instance variables
-        super(id, item, totalItem);
+        super(item);
         this.customer=customer;
+        this.isActive=false;
     }
 
     /**
@@ -53,17 +56,12 @@ public class Sell_Paid extends Invoice
     
     public String toString()
     {
-        return "===== INVOICE =====" +
-            "ID: "+this.getId() +
-            "Item: "+this.getItem().getName() +
-            "Amount:" +this.getTotalItem()+
-            "Buy Date: "+this.getDate() +
-            "Price: " + this.getItem().getPrice()+
-            "Total Price: " +this.getTotalPrice() +
-            "Supplier ID: " +this.getItem().getSupplier().getId()+
-            "Supplier Name: " +this.getItem().getSupplier().getName()+
-            "Customer ID: " +this.getCustomer().getId()+
-            "Customer Name: " +this.getCustomer().getName()+
-            "Status: "+this.INVOICE_STATUS +"Sell success";
+        String text = "";
+        for (int object : getItem())
+        {
+            System.out.println(DatabaseItem.getItemFromID(object));
+            text = text+object;
+        }
+        return text;
     }
 }

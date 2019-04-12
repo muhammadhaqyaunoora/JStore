@@ -1,13 +1,15 @@
 #BlueJ class context
 comment0.target=DatabaseSupplier
-comment0.text=\r\n\ Ini\ adalah\ kelas\ DatabaseSupplier.\ Kelas\ ini\ digunakan\ untuk\ \r\n\ database\ kelas\ Supplier.\r\n\ @author\ (Muhammad\ Haqy\ Aunoora)\r\n\ @version\ (28\ Februari\ 2019)\r\n
-comment1.params=supplier
-comment1.target=boolean\ addSupplier(Supplier)
+comment1.params=
+comment1.target=java.util.ArrayList\ getSupplierDatabase()
 comment1.text=\r\n\ Method\ untuk\ menambah\ data\ supplier\r\n\ \r\n\ @param\ supplier\r\n\ @return\ \ \ \ true\r\n
-comment2.params=supplier
-comment2.target=void\ removeSupplier(Supplier)
-comment2.text=\r\n\ Method\ untuk\ menghapus\ data\ supplier\r\n\ \r\n\ @param\ supplier\r\n\ @return\ \ \ \ true\r\n
-comment3.params=
-comment3.target=Supplier[]\ getListSupplier()
-comment3.text=\r\n\ Method\ getter\ untuk\ mengambil\ data\r\n\ \r\n\ @return\ \ \ \ listSupplier\r\n
-numComments=4
+comment2.params=
+comment2.target=int\ getLastSupplierID()
+comment3.params=supplier
+comment3.target=boolean\ addSupplier(Supplier)
+comment4.params=id
+comment4.target=Supplier\ getSupplier(int)
+comment5.params=id
+comment5.target=boolean\ removeSupplier(int)
+comment5.text=\r\n\ Method\ untuk\ menghapus\ data\ supplier\r\n\ \r\n\ @param\ supplier\r\n\ @return\ \ \ \ true\r\n
+numComments=6

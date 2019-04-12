@@ -6,26 +6,27 @@
  * @version (28 Februari 2019)
  */
 import java.util.Calendar;
+import java.util.ArrayList;
 
 public abstract class Invoice
 {
     // instance variables - replace the example below with your own
     private int id;
-    private Item item;
+    private ArrayList<Integer> item;
     private Calendar date;
     private int totalPrice;
-    private int totalItem;
+    private boolean isActive;
+    private Customer customer; 
     
     /**
      * Konstruktor untuk objek dari kelas Invoice
      */
-    public Invoice(int id, Item item, int totalItem)
+    public Invoice(ArrayList<Integer> item)
     {
         // initialise instance variables
-        this.id=id;
+        this.id=DatabaseInvoice.getLastInvoiceId()+1;
         this.item=item;
-        this.totalItem=totalItem;
-        setTotalPrice(item.getPrice()*totalItem);
+        //setTotalPrice(item.getPrice()*totalItem);
     }
 
     /**
@@ -36,7 +37,7 @@ public abstract class Invoice
     public int getId()
     {
         // put your code here
-        return id;
+        return this.id;
     }
     
     /**
@@ -44,9 +45,9 @@ public abstract class Invoice
      *
      * @return    item
      */
-    public Item getItem()
+    public ArrayList<Integer> getItem()
     {
-        return item;
+        return this.item;
     }
     
     /**
@@ -56,7 +57,7 @@ public abstract class Invoice
      */
     public Calendar getDate()
     {
-        return date;
+        return this.date;
     }
     
     /**
@@ -66,17 +67,22 @@ public abstract class Invoice
      */
     public int getTotalPrice()
     {
-        return totalPrice;
-    }
-    
-    public int getTotalItem()
-    {
-        return totalItem;
+        return this.totalPrice;
     }
     
     public abstract InvoiceStatus getInvoiceStatus();
     
     public abstract InvoiceType getInvoiceType();
+    
+    public boolean isActive()
+    {
+        return this.isActive;
+    }
+    
+    public Customer getCustomer()
+    {
+        return this.customer;
+    }
     
     /**
      * Method setter untuk menentukan data
@@ -93,7 +99,7 @@ public abstract class Invoice
      *
      * @param item 
      */
-    public void setItem(Item item)
+    public void setItem(ArrayList<Integer> item)
     {
         this.item = item;
     }
@@ -115,17 +121,22 @@ public abstract class Invoice
      */
     public void setTotalPrice(int totalPrice)
     {
-        this.totalPrice = totalPrice;
-    }
-    
-    public void setTotalItem(int totalItem)
-    {
-        this.totalItem = totalItem;
+        int price = 0;
+        for(Item object : DatabaseItem.getItemDatabase())
+        {
+            price = price+object.getPrice();
+        }
+        this.totalPrice = price;
     }
     
     public void setInvoiceStatus(InvoiceStatus status)
     {
-    //    this.status = status;
+        //this.status = status;
+    }
+    
+    public void setIsActive(boolean isActive)
+    {
+        this.isActive = isActive;
     }
     
     public abstract String toString();

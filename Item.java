@@ -22,7 +22,7 @@ public class Item
     public Item(int id, String name, int stock, ItemStatus status, int price, ItemCategory category, Supplier supplier)
     {
         // initialise instance variables
-        this.id=id;
+        this.id=DatabaseItem.getLastItemID()+1;;
         this.name=name;
         this.stock=stock;
         this.status=status;

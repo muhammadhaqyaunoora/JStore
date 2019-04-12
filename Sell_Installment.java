@@ -5,6 +5,8 @@
  * @author (your name)
  * @version (a version number or a date)
  */
+import java.util.ArrayList;
+
 public class Sell_Installment extends Invoice
 {
     // instance variables - replace the example below with your own
@@ -13,16 +15,18 @@ public class Sell_Installment extends Invoice
     private int installmentPeriod;
     private int installmentPrice;
     private Customer customer;
+    private boolean isActive;
     
     /**
      * Constructor for objects of class Sell_Installment
      */
-    public Sell_Installment(int id, Item item, int totalItem, int installmentPeriod, Customer customer)
+    public Sell_Installment(ArrayList<Integer> item, int installmentPeriod, Customer customer)
     {
         // initialise instance variables
-        super(id, item, totalItem);
+        super(item);
         this.installmentPeriod=installmentPeriod;
         this.customer=customer;
+        this.isActive=true;
     }
 
     /**
@@ -75,18 +79,12 @@ public class Sell_Installment extends Invoice
     
     public String toString()
     {
-        return "===== INVOICE =====" +
-            "ID: "+this.getId() +
-            "Item: "+this.getItem().getName() +
-            "Amount:" +this.getTotalItem()+
-            "Buy Date: "+this.getDate() +
-            "Price: " + this.getItem().getPrice()+
-            "Total Price: " +this.getTotalPrice() +
-            "Supplier ID: " +this.getItem().getSupplier().getId()+
-            "Supplier Name: " +this.getItem().getSupplier().getName()+
-            "Customer ID: " +this.getCustomer().getId()+
-            "Customer Name: " +this.getCustomer().getName()+
-            "Installment Period: "+this.getInstallmentPeriod()+
-            "Status: "+this.INVOICE_STATUS +"Sell success";
+        String text = "";
+        for (int object : getItem())
+        {
+            System.out.println(DatabaseItem.getItemFromID(object));
+            text = text+object;
+        }
+        return text;
     }
 }

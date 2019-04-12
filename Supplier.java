@@ -20,7 +20,7 @@ public class Supplier
     public Supplier(int id, String name, String email, String phoneNumber, Location location)
     {
         // initialise instance variables
-        this.id=id;
+        this.id=DatabaseSupplier.getLastSupplierID()+1;
         this.name=name;
         this.email=email;
         this.phoneNumber=phoneNumber;

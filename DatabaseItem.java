@@ -5,11 +5,13 @@
  * @author (Muhammad Haqy Aunoora)
  * @version (28 Februari 2019)
  */
+import java.util.ArrayList;
+
 public class DatabaseItem
 {
     // instance variables - replace the example below with your own
-    private Item[] listItem;
-    public static Item itemDB;
+    private final static ArrayList<Item> ITEM_DATABASE=new ArrayList<>();
+    private final static int LAST_ITEM_ID=0;
 
     /**
      * Method untuk menambah data item
@@ -17,10 +19,93 @@ public class DatabaseItem
      * @param item
      * @return    true
      */
+    public static ArrayList<Item> getItemDatabase()
+    {
+        return ITEM_DATABASE;
+    }
+    
+    public static int getLastItemID()
+    {
+        return LAST_ITEM_ID;
+    }
+    
     public static boolean addItem(Item item)
     {
         // put your code here
-        return true;
+        boolean success = true;
+        for(Item object : ITEM_DATABASE)
+        {
+            if(object.getName().equals(item.getName()) && object.getStatus().equals(item.getStatus()) && object.getSupplier().equals(item.getSupplier()))
+            {
+                success = false;
+                break;
+            }
+            else
+            {
+                success = true;
+            }
+        }
+        if (success)
+        {
+            ITEM_DATABASE.add(item);
+        }
+        return success;
+    }
+    
+    public static Item getItemFromID(int id)
+    {
+        Item value = null;
+        for(Item object : ITEM_DATABASE)
+        {
+            if(object.getId() == id)
+            {
+                value = object;
+                break;
+            }
+        }
+        return value;
+    }
+    
+    public static ArrayList<Item> getItemFromSupplier(Supplier supplier)
+    {
+        ArrayList<Item> value = new ArrayList<>();
+        for(Item object : ITEM_DATABASE)
+        {
+            if(object.getSupplier() == supplier)
+            {
+                value.add(object);
+                break;
+            }
+        }
+        return value;
+    }
+    
+    public static ArrayList<Item> getItemFromCategory(ItemCategory category)
+    {
+        ArrayList<Item> value = new ArrayList<>();
+        for(Item object : ITEM_DATABASE)
+        {
+            if(object.getCategory() == category)
+            {
+                value.add(object);
+                break;
+            }
+        }
+        return value;
+    }
+    
+    public static ArrayList<Item> getItemFromStatus(ItemStatus status)
+    {
+        ArrayList<Item> value = new ArrayList<>();
+        for(Item object : ITEM_DATABASE)
+        {
+            if(object.getStatus() == status)
+            {
+                value.add(object);
+                break;
+            }
+        }
+        return value;
     }
     
     /**
@@ -29,28 +114,22 @@ public class DatabaseItem
      * @param item
      * @return    true
      */
-    public static boolean removeItem(Item item)
+    public static boolean removeItem(int id)
     {
-        return true;
-    }
-    
-    /**
-     * Method untuk menambah data
-     * 
-     * @return    item
-     */
-    public static Item getItem()
-    {
-        return itemDB;
-    }
-    
-    /**
-     * Method untuk menambah data itemDatabase
-     * 
-     * @return    listItem
-     */
-    public Item[] getItemDatabase()
-    {
-        return listItem;
+        Item value = null;
+        int index;
+        boolean success = false;
+        for(Item object : ITEM_DATABASE)
+        {
+            if(object.getId() == id)
+            {
+                value = object;
+                index = ITEM_DATABASE.indexOf(value);
+                ITEM_DATABASE.remove(index);
+                success = true;
+                break;
+            }
+        }
+        return success;
     }
 }

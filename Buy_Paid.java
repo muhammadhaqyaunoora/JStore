@@ -5,19 +5,23 @@
  * @author (your name)
  * @version (a version number or a date)
  */
+import java.util.ArrayList;
+
 public class Buy_Paid extends Invoice
 {
     // instance variables - replace the example below with your own
     private static InvoiceType INVOICE_TYPE=InvoiceType.Buy;
     private static InvoiceStatus INVOICE_STATUS=InvoiceStatus.Paid;
+    private boolean isActive;
+    
     /**
      * Constructor for objects of class Buy_Paid
      */
-    public Buy_Paid(int id, Item item, int totalItem)
+    public Buy_Paid(ArrayList<Integer> item)
     {
         // initialise instance variables
-        super(id, item, totalItem);
-        
+        super(item);
+        this.isActive=false;
     }
 
     /**
@@ -39,15 +43,12 @@ public class Buy_Paid extends Invoice
     
     public String toString()
     {
-        return "===== INVOICE =====" +
-            "ID: "+this.getId() +
-            "Item: "+this.getItem().getName() +
-            "Amount:" +this.getTotalItem()+
-            "Buy Date: "+this.getDate() +
-            "Price: " + this.getItem().getPrice()+
-            "Total Price: " +this.getTotalPrice() +
-            "Supplier ID: " +this.getItem().getSupplier().getId()+
-            "Supplier Name: " +this.getItem().getSupplier().getName()+
-            "Status: "+this.INVOICE_STATUS +" Buy Success";
+        String text = "";
+        for (int object : getItem())
+        {
+            System.out.println(DatabaseItem.getItemFromID(object));
+            text = text+object;
+        }
+        return text;
     }
 }
