@@ -142,8 +142,9 @@ public class JStore
         //transaction.sellItemUnpaid(benda);
         //transaction.sellItemInstallment(benda);
         System.out.println(DatabaseSupplier.getSupplierDatabase());
-        System.out.println(DatabaseSupplier.getSupplierDatabase());
-
+        System.out.println(DatabaseCustomer.getCustomerDatabase());
+        System.out.println(DatabaseItem.getItemDatabase());
+        System.out.println(DatabaseInvoice.getInvoiceDatabase());
     }
     /**
      * An example of a method - replace this comment with your own
