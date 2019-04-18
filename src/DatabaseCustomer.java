@@ -16,8 +16,6 @@ public class DatabaseCustomer
     /**
      * An example of a method - replace this comment with your own
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
      */
     public static ArrayList<Customer> getCustomerDatabase()
     {
@@ -29,16 +27,15 @@ public class DatabaseCustomer
         return LAST_CUSTOMER_ID;
     }
     
-    public static boolean addCustomer(Customer customer)
+    public static boolean addCustomer(Customer customer) throws CustomerAlreadyExistsException
     {
         // put your code here
         boolean success = true;
         for(Customer object : CUSTOMER_DATABASE)
         {
-            if(object.getName().equals(customer.getName()) && object.getEmail().equals(customer.getEmail()))
+            if(object.getUsername().equals(customer.getUsername()) || object.getEmail().equals(customer.getEmail()))
             {
-                success = false;
-                break;
+                throw new CustomerAlreadyExistsException(object);
             }
             else
             {
@@ -67,7 +64,7 @@ public class DatabaseCustomer
         return value;
     }
     
-    public boolean removeCustomer(int id)
+    public static boolean removeCustomer(int id) throws CustomerNotFoundException
     {
         Customer value = null;
         int index;
@@ -83,6 +80,6 @@ public class DatabaseCustomer
                 break;
             }
         }
-        return success;
+        throw new CustomerNotFoundException(id);
     }
 }

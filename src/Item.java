@@ -10,7 +10,6 @@ public class Item
     // instance variables - replace the example below with your own
     private int id;
     private String name;
-    private int stock;
     private int price;
     private ItemCategory category;
     private ItemStatus status;
@@ -19,16 +18,15 @@ public class Item
     /**
      * Konstruktor untuk objek dari kelas Item
      */
-    public Item(String name, int stock, ItemStatus status, int price, ItemCategory category, Supplier supplier)
+    public Item(String name, ItemStatus status, int price, Supplier supplier, ItemCategory category)
     {
         // initialise instance variables
         this.id=DatabaseItem.getLastItemID()+1;
         this.name=name;
-        this.stock=stock;
         this.status=status;
         this.price=price;
-        this.category=category;
         this.supplier=supplier;
+        this.category=category;
     }
 
     /**
@@ -51,17 +49,7 @@ public class Item
     {
         return this.name;
     }
-    
-    /**
-     * Method getter untuk mengambil data
-     *
-     * @return    stock
-     */
-    public int getStock()
-    {
-        return this.stock;
-    }
-    
+
     /**
      * Method getter untuk mengambil data
      *
@@ -120,16 +108,6 @@ public class Item
     /**
      * Method setter untuk menentukan data
      *
-     * @param stock 
-     */
-    public void setStock(int stock)
-    {
-        this.stock = stock;
-    }
-    
-    /**
-     * Method setter untuk menentukan data
-     *
      * @param price 
      */
     public void setPrice(int price)
@@ -159,6 +137,6 @@ public class Item
     
     public String toString()
     {
-        return "ID: " +id+ "\nName: " +name+ "\nStock: " +stock+ "\nPrice: " +price+ "\nCategory: " +category+ "\nStatus: " +status+ "\nSupplier: " +supplier;
+        return "ID: " +id+ "\nName: " +name+ "\nPrice: " +price+ "\nCategory: " +category+ "\nStatus: " +status+ "\nSupplier: " +supplier;
     }
 }

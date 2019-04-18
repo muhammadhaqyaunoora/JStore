@@ -16,7 +16,6 @@ public class DatabaseSupplier
     /**
      * Method untuk menambah data supplier
      * 
-     * @param supplier
      * @return    true
      */
     public static ArrayList<Supplier> getSupplierDatabase()
@@ -29,16 +28,15 @@ public class DatabaseSupplier
         return LAST_SUPPLIER_ID;
     }
     
-    public static boolean addSupplier(Supplier supplier)
+    public static boolean addSupplier(Supplier supplier) throws SupplierAlreadyExistsException
     {
         // put your code here
         boolean success = true;
         for(Supplier object : SUPPLIER_DATABASE)
         {
-            if(object.getName().equals(supplier.getName()) && object.getEmail().equals(supplier.getEmail()) && object.getPhoneNumber().equals(supplier.getPhoneNumber()))
+            if(object.getEmail().equals(supplier.getEmail()) || object.getPhoneNumber().equals(supplier.getPhoneNumber()))
             {
-                success = false;
-                break;
+                throw new SupplierAlreadyExistsException(object);
             }
             else
             {
@@ -69,11 +67,10 @@ public class DatabaseSupplier
     
     /**
      * Method untuk menghapus data supplier
-     * 
-     * @param supplier
+     *
      * @return    true
      */
-    public boolean removeSupplier(int id)
+    public static boolean removeSupplier(int id) throws SupplierNotFoundException
     {
         Supplier value = null;
         int index;
@@ -82,6 +79,11 @@ public class DatabaseSupplier
         {
             if(object.getId() == id)
             {
+                try {
+                    DatabaseItem.removeItem(id);
+                } catch (ItemNotFoundException e) {
+                    System.out.println(e.getExMessage());
+                }
                 value = object;
                 index = SUPPLIER_DATABASE.indexOf(value);
                 SUPPLIER_DATABASE.remove(index);
@@ -89,6 +91,6 @@ public class DatabaseSupplier
                 break;
             }
         }
-        return success;
+        throw new SupplierNotFoundException(id);
     }
 }

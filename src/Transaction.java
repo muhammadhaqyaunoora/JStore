@@ -12,68 +12,66 @@ public class Transaction
     /**
      * An example of a method - replace this comment with your own
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     *
      */
-    public static void orderNewItem(Item item)
+    public static void orderNewItem(ArrayList<Integer> item_list)
     {
-        ArrayList<Integer> temp = new ArrayList<>();
-        temp.add(item.getId());
-        Invoice inv = new Buy_Paid(temp);
-        DatabaseInvoice.addInvoice(inv);
+        //ArrayList<Integer> temp = new ArrayList<>();
+        //temp.add(item.getId());
+        //Invoice inv = new Buy_Paid(temp);
+        //DatabaseInvoice.addInvoice(inv);
     }
     
-    public static void orderSecondItem(Item item)
+    public static void orderSecondItem(ArrayList<Integer> item_list)
     {
-        ArrayList<Integer> temp = new ArrayList<>();
-        temp.add(item.getId());
-        Invoice inv = new Buy_Paid(temp);
-        DatabaseInvoice.addInvoice(inv); 
+//        ArrayList<Integer> temp = new ArrayList<>();
+//        //temp.add(item.getId());
+//        Invoice inv = new Buy_Paid(temp);
+//        DatabaseInvoice.addInvoice(inv);
     }
     
-    public static void orderRefurbishedItem(Item item)
+    public static void orderRefurbishedItem(ArrayList<Integer> item_list)
     {
-        ArrayList<Integer> temp = new ArrayList<>();
-        temp.add(item.getId());
-        Invoice inv = new Buy_Paid(temp);
-        DatabaseInvoice.addInvoice(inv);
+//        ArrayList<Integer> temp = new ArrayList<>();
+//        //temp.add(item.getId());
+//        Invoice inv = new Buy_Paid(temp);
+//        DatabaseInvoice.addInvoice(inv);
     }
     
-    public static void sellItemPaid(Item item, Customer customer)
+    public static void sellItemPaid(ArrayList<Integer> item_list, Customer customer)
     {
-        ArrayList<Integer> temp = new ArrayList<>();
-        temp.add(item.getId());
-        Invoice inv = new Sell_Paid(temp, customer);
-        DatabaseInvoice.addInvoice(inv);
+//        ArrayList<Integer> temp = new ArrayList<>();
+//        //temp.add(item.getId());
+//        Invoice inv = new Sell_Paid(temp, customer);
+//        DatabaseInvoice.addInvoice(inv);
     }
     
-    public static void sellItemUnpaid(Item item, Customer customer)
+    public static void sellItemUnpaid(ArrayList<Integer> item_list, Customer customer)
     {
-        ArrayList<Integer> temp = new ArrayList<>();
-        temp.add(item.getId());
-        Invoice inv = new Sell_Unpaid(temp, customer);
-        DatabaseInvoice.addInvoice(inv);
+//        ArrayList<Integer> temp = new ArrayList<>();
+//        //temp.add(item.getId());
+//        Invoice inv = new Sell_Unpaid(temp, customer);
+//        DatabaseInvoice.addInvoice(inv);
     }
     
-    public static void sellItemInstallment(Item item, Customer customer, int installmentPeriod)
+    public static void sellItemInstallment(ArrayList<Integer> item_list, Customer customer, int installmentPeriod)
     {
-        ArrayList<Integer> temp = new ArrayList<>();
-        temp.add(item.getId());
-        Invoice inv = new Sell_Installment(temp,12,customer);
-        DatabaseInvoice.addInvoice(inv);
+//        ArrayList<Integer> temp = new ArrayList<>();
+//        //temp.add(item.getId());
+//        Invoice inv = new Sell_Installment(temp,12,customer);
+//        DatabaseInvoice.addInvoice(inv);
     }
     
     public boolean finishTransaction(Invoice invoice)
     {
-        ArrayList<Invoice> invDb = DatabaseInvoice.getInvoiceDatabase();
-        for(int i=0;i<invDb.size();i++)
-        {
-            if(invDb.get(i).getId()==invoice.getId())
-            {
-                invoice.setIsActive(false);
-                invDb.set(i,invoice);
-                System.out.println(invoice.toString());
-                return true;
+        for (Invoice invo : DatabaseInvoice.getInvoiceDatabase()){
+            if(invo == invoice){
+                if (invoice.getInvoiceStatus().equals(InvoiceStatus.Unpaid) || invoice.getInvoiceStatus().equals(InvoiceStatus.Installment)){
+                    invo.setIsActive(false);
+                    //invoice1.set(i,invoice);
+                    //System.out.println(invo.getIsActive());
+                    return true;
+                }
             }
         }
         return false;
@@ -81,13 +79,14 @@ public class Transaction
     
     public boolean cancelTransaction(Invoice invoice)
     {
-        ArrayList<Invoice> invDb = DatabaseInvoice.getInvoiceDatabase();
-        for(Invoice inv : invDb)
-        {
-            if(inv.getId() == invoice.getId())
-            {
-                invDb.remove(inv);
-                return true;
+        for (Invoice invo : DatabaseInvoice.getInvoiceDatabase()){
+            if(invo == invoice){
+                if (invoice.getInvoiceStatus().equals(InvoiceStatus.Unpaid) || invoice.getInvoiceStatus().equals(InvoiceStatus.Installment)){
+                    invo.setIsActive(false);
+                    //invoice1.set(i,invoice);
+                    //System.out.println(invo.getIsActive());
+                    return true;
+                }
             }
         }
         return false;

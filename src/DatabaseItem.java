@@ -15,8 +15,7 @@ public class DatabaseItem
 
     /**
      * Method untuk menambah data item
-     * 
-     * @param item
+     *
      * @return    true
      */
     public static ArrayList<Item> getItemDatabase()
@@ -29,16 +28,15 @@ public class DatabaseItem
         return LAST_ITEM_ID;
     }
     
-    public static boolean addItem(Item item)
+    public static boolean addItem(Item item) throws ItemAlreadyExistsException
     {
         // put your code here
         boolean success = true;
         for(Item object : ITEM_DATABASE)
         {
-            if(object.getName().equals(item.getName()) && object.getStatus().equals(item.getStatus()) && object.getSupplier().equals(item.getSupplier()))
+            if(object.getName().equals(item.getName()) && object.getStatus().equals(item.getStatus()) && object.getSupplier().equals(item.getSupplier()) && object.getCategory().equals(item.getCategory()))
             {
-                success = false;
-                break;
+                throw new ItemAlreadyExistsException(object);
             }
             else
             {
@@ -111,11 +109,10 @@ public class DatabaseItem
     
     /**
      * Method untuk menghapus data item
-     * 
-     * @param item
+     *
      * @return    true
      */
-    public static boolean removeItem(int id)
+    public static boolean removeItem(int id) throws ItemNotFoundException
     {
         Item value = null;
         int index;
@@ -131,6 +128,6 @@ public class DatabaseItem
                 break;
             }
         }
-        return success;
+        throw new ItemNotFoundException(id);
     }
 }

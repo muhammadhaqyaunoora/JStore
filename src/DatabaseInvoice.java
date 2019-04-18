@@ -16,7 +16,6 @@ public class DatabaseInvoice
     /**
      * An example of a method - replace this comment with your own
      *
-     * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
     public static ArrayList<Invoice> getInvoiceDatabase()
@@ -29,10 +28,16 @@ public class DatabaseInvoice
         return LAST_INVOICE_ID;
     }
     
-    public static boolean addInvoice(Invoice invoice)
+    public static boolean addInvoice(Invoice invoice) throws InvoiceAlreadyExistsException
     {
         // put your code here
+        for (Invoice invoice1: INVOICE_DATABASE) {
+            if ((invoice.getCustomer().equals(invoice1.getCustomer()))) {
+                throw new InvoiceAlreadyExistsException(invoice1);
+            }
+        }
         INVOICE_DATABASE.add(invoice);
+        LAST_INVOICE_ID = invoice.getId();
         return true;
     }
     
@@ -48,25 +53,27 @@ public class DatabaseInvoice
         return null;
     }
     
-    public static Invoice getActiveOrder(Customer customer)
+    public static ArrayList<Invoice> getActiveOrder(Customer customer) throws CustomerDoesntHaveActiveException
     {
-        for(Invoice invoice : INVOICE_DATABASE)
+        ArrayList<Invoice> Invoice_list = new ArrayList<Invoice>();
+        for (Invoice invoiceDB : INVOICE_DATABASE)
         {
-            if(customer == invoice.getCustomer() && invoice.isActive()==true && (invoice.getInvoiceStatus() == InvoiceStatus.Unpaid || invoice.getInvoiceStatus() == InvoiceStatus.Installment))
+            if (invoiceDB.isActive() == true &&
+                    customer.equals(invoiceDB.getCustomer()))
             {
-                return invoice;
+                Invoice_list.add(invoiceDB);
             }
         }
-        return null;
+        throw new CustomerDoesntHaveActiveException(customer);
     }
     
-    public boolean removeInvoice(int id)
+    public static boolean removeInvoice(int id) throws InvoiceNotFoundException
     {
         for(Invoice invoice : INVOICE_DATABASE)
         {
             if(id == invoice.getId())
             {
-                if(invoice.isActive() == true)
+                if(invoice.isActive())
                 {
                     invoice.setIsActive(false);
                     INVOICE_DATABASE.remove(invoice);
@@ -74,6 +81,6 @@ public class DatabaseInvoice
                 }
             }
         }
-        return false;
+        throw new InvoiceNotFoundException(id);
     }
 }
