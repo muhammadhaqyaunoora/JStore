@@ -8,8 +8,6 @@ import java.util.Calendar;
 @RestController
 public class CustomerController {
 
-    private int year=1999;
-
     @RequestMapping("/")
     public String indexPage(@RequestParam(value="name", defaultValue="world") String name) {
         return "Hello " + name;
@@ -20,7 +18,13 @@ public class CustomerController {
                             @RequestParam(value="email") String email,
                             @RequestParam(value="username") String username,
                             @RequestParam(value="password") String password,
-                            @RequestParam(value="birthyear") int year) {
+                            @RequestParam(value="birthyear", required=false) Integer year) {
+        if(year==null){
+            year=1999;
+        }
+        else{
+            year=year;
+        }
         Customer customer = new Customer(name, email, username, password, year, 10, 10);
         try {
             DatabaseCustomer.addCustomer(customer);
