@@ -62,7 +62,7 @@ public class Transaction
 //        DatabaseInvoice.addInvoice(inv);
     }
     
-    public boolean finishTransaction(Invoice invoice)
+    public static boolean finishTransaction(Invoice invoice)
     {
         for (Invoice invo : DatabaseInvoice.getInvoiceDatabase()){
             if(invo == invoice){
@@ -77,7 +77,7 @@ public class Transaction
         return false;
     }
     
-    public boolean cancelTransaction(Invoice invoice)
+    public static boolean cancelTransaction(Invoice invoice)
     {
         for (Invoice invo : DatabaseInvoice.getInvoiceDatabase()){
             if(invo == invoice){

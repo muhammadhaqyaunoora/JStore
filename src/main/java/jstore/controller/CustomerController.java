@@ -42,4 +42,16 @@ public class CustomerController {
         return customer;
     }
 
+    @RequestMapping(value = "/logincust", method= RequestMethod.POST)
+    public Customer loginCust(@RequestParam(value="email") String email,
+                              @RequestParam(value="password") String password) {
+
+        for(Customer cust:DatabaseCustomer.getCustomerDatabase()){
+            if(cust.getEmail().equals(email)&&cust.getPassword().equals(password)){
+                return cust;
+            }
+        }
+        return null;
+    }
+
 }
