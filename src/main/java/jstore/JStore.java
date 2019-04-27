@@ -22,21 +22,49 @@ public class JStore
     {
         Location loc = new Location("Depok", "Jawa Barat", "Kota");
 
-        Supplier sup1 = new Supplier("Alwi", "alwi@email.com", "02184305768", loc);
-        Supplier sup2 = new Supplier("Udin", "udin@email.com", "02184309876", loc);
-        Supplier sup3 = new Supplier("Meidi", "Meidi@email.com", "02184301234", loc);
+        try {
+            DatabaseSupplier.addSupplier(new Supplier("Alwi", "alwi@email.com", "02184305768", loc));
+        } catch (SupplierAlreadyExistsException e) {
+            System.out.println(e.getExMessage());
+        }
+        try {
+            DatabaseSupplier.addSupplier(new Supplier("Udin", "udin@email.com", "02184309876", loc));
+        } catch (SupplierAlreadyExistsException e) {
+            System.out.println(e.getExMessage());
+        }
+        try {
+            DatabaseSupplier.addSupplier(new Supplier("Meidi", "Meidi@email.com", "02184301234", loc));
+        } catch (SupplierAlreadyExistsException e) {
+            System.out.println(e.getExMessage());
+        }
 
-        Item item1 = new Item("LED Strip", ItemStatus.New, 100000, sup1, ItemCategory.Electronics);
-        Item item2 = new Item("Desk", ItemStatus.Refurbished, 1000, sup3, ItemCategory.Furniture);
-        Item item3 = new Item("Calculator", ItemStatus.Second, 400000, sup2, ItemCategory.Stationery);
-        Item item4 = new Item("Resistor", ItemStatus.Sold, 1000, sup1, ItemCategory.Electronics);
+        try {
+            DatabaseItem.addItem(new Item("LED Strip", ItemStatus.New, 100000, DatabaseSupplier.getSupplier(1), ItemCategory.Electronics));
+        } catch (ItemAlreadyExistsException e) {
+            System.out.println(e.getExMessage());
+        }
+        try {
+            DatabaseItem.addItem(new Item("Desk", ItemStatus.Refurbished, 1000000, DatabaseSupplier.getSupplier(3), ItemCategory.Furniture));
+        } catch (ItemAlreadyExistsException e) {
+            System.out.println(e.getExMessage());
+        }
+        try {
+            DatabaseItem.addItem(new Item("Calculator", ItemStatus.Second, 400000, DatabaseSupplier.getSupplier(2), ItemCategory.Stationery));
+        } catch (ItemAlreadyExistsException e) {
+            System.out.println(e.getExMessage());
+        }
+        try {
+            DatabaseItem.addItem(new Item("Resistor", ItemStatus.Sold, 1000, DatabaseSupplier.getSupplier(1), ItemCategory.Electronics));
+        } catch (ItemAlreadyExistsException e) {
+            System.out.println(e.getExMessage());
+        }
 
         SpringApplication.run(JStore.class, args);
     }
     /**
      * An example of a method - replace this comment with your own
      *
-     * @return    the sum of x and y
+     *    the sum of x and y
      */
     public JStore()
     {

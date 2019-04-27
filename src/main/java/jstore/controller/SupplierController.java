@@ -13,8 +13,7 @@ import java.util.ArrayList;
 public class SupplierController {
     @RequestMapping(value = "/suppliers", method= RequestMethod.GET)
     public ArrayList<Supplier> suppliersList(){
-        ArrayList<Supplier> suppliers = DatabaseSupplier.getSupplierDatabase();
-        return suppliers;
+        return DatabaseSupplier.getSupplierDatabase();
     }
 
     @RequestMapping(value = "/suppliers/{id_supplier}", method = RequestMethod.GET)

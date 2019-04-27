@@ -31,38 +31,33 @@ public class DatabaseSupplier
     public static boolean addSupplier(Supplier supplier) throws SupplierAlreadyExistsException
     {
         // put your code here
-        boolean success = true;
-        for(Supplier object : SUPPLIER_DATABASE)
-        {
-            if(object.getEmail().equals(supplier.getEmail()) || object.getPhoneNumber().equals(supplier.getPhoneNumber()))
-            {
-                throw new SupplierAlreadyExistsException(object);
+        String email = supplier.getEmail();
+        String name = supplier.getName();
+        String phoneNumber = supplier.getPhoneNumber();
+        for( Supplier sup : SUPPLIER_DATABASE){
+            if(name.equals(sup.getName())){
+                throw new SupplierAlreadyExistsException(sup);
             }
-            else
-            {
-                success = true;
+            if(email.equals(sup.getEmail())){
+                throw new SupplierAlreadyExistsException(sup);
+            }
+            if(phoneNumber.equals(sup.getPhoneNumber())){
+                throw new SupplierAlreadyExistsException(sup);
             }
         }
-        if (success)
-        {
-            SUPPLIER_DATABASE.add(supplier);
-            LAST_SUPPLIER_ID = supplier.getId();
-        }
-        return success;
+        SUPPLIER_DATABASE.add(supplier);
+        LAST_SUPPLIER_ID = supplier.getId();
+        return false;
     }
     
     public static Supplier getSupplier(int id)
     {
-        Supplier value = null;
-        for(Supplier object : SUPPLIER_DATABASE)
-        {
-            if(object.getId() == id)
-            {
-                value = object;
-                break;
+        for ( Supplier sup : SUPPLIER_DATABASE ){
+            if (sup.getId() == id) {
+                return sup;
             }
         }
-        return value;
+        return null;
     }
     
     /**
@@ -72,23 +67,20 @@ public class DatabaseSupplier
      */
     public static boolean removeSupplier(int id) throws SupplierNotFoundException
     {
-        Supplier value = null;
-        int index;
-        boolean success = false;
-        for(Supplier object : SUPPLIER_DATABASE)
-        {
-            if(object.getId() == id)
-            {
-                try {
-                    DatabaseItem.removeItem(id);
-                } catch (ItemNotFoundException e) {
-                    System.out.println(e.getExMessage());
+        for ( Supplier sup : SUPPLIER_DATABASE ){
+            if (sup.getId() == id) {
+                ArrayList<Item> temp = DatabaseItem.getItemFromSupplier(sup);
+                if (temp != null) {
+                    for (Item item : temp){
+                        try {
+                            DatabaseItem.removeItem(item.getId());
+                        } catch (ItemNotFoundException e) {
+                            System.out.print(e.getExMessage());
+                        }
+                    }
                 }
-                value = object;
-                index = SUPPLIER_DATABASE.indexOf(value);
-                SUPPLIER_DATABASE.remove(index);
-                success = true;
-                break;
+                SUPPLIER_DATABASE.remove(sup);
+                return true;
             }
         }
         throw new SupplierNotFoundException(id);

@@ -31,7 +31,6 @@ public class InvoiceController {
             DatabaseInvoice.addInvoice(sp);
         } catch(Exception ex) {
             ex.getMessage();
-            return null;
         }
 
         return sp;
@@ -46,7 +45,6 @@ public class InvoiceController {
             DatabaseInvoice.addInvoice(su);
         } catch(Exception ex) {
             ex.getMessage();
-            return null;
         }
 
         return su;
@@ -62,7 +60,6 @@ public class InvoiceController {
             DatabaseInvoice.addInvoice(si);
         } catch(Exception ex) {
             ex.getMessage();
-            return null;
         }
 
         return si;
@@ -73,7 +70,7 @@ public class InvoiceController {
 
         Invoice inv = DatabaseInvoice.getInvoice(id_invoice);
 
-        Transaction.cancelTransaction(inv);
+        Transaction.cancelTransaction(DatabaseInvoice.getInvoice(id_invoice));
 
         return inv;
     }
@@ -81,10 +78,8 @@ public class InvoiceController {
     @RequestMapping(value = "/finishtransaction", method= RequestMethod.POST)
     public Invoice finishTransaction(@RequestParam(value="idinvoice") int id_invoice) {
 
-        Invoice inv = DatabaseInvoice.getInvoice(id_invoice);
+        Transaction.finishTransaction(DatabaseInvoice.getInvoice(id_invoice));
 
-        Transaction.finishTransaction(inv);
-
-        return inv;
+        return DatabaseInvoice.getInvoice(id_invoice);
     }
 }
