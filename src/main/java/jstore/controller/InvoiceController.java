@@ -13,8 +13,8 @@ public class InvoiceController {
             return DatabaseInvoice.getActiveOrder(DatabaseCustomer.getCustomer(id_customer));
         } catch (CustomerDoesntHaveActiveException e) {
             e.getExMessage();
+            return null;
         }
-        return null;
     }
 
     @RequestMapping(value = "/invoice/{id_invoice}", method = RequestMethod.GET)
@@ -29,10 +29,9 @@ public class InvoiceController {
         Invoice sp = new Sell_Paid(listItem, DatabaseCustomer.getCustomer(id_customer));
         try {
             DatabaseInvoice.addInvoice(sp);
-        } catch(Exception ex) {
-            ex.getMessage();
+        } catch (InvoiceAlreadyExistsException e) {
+            e.getExMessage();
         }
-
         return sp;
     }
 
@@ -43,10 +42,9 @@ public class InvoiceController {
         Invoice su = new Sell_Unpaid(listItem, DatabaseCustomer.getCustomer(id_customer));
         try {
             DatabaseInvoice.addInvoice(su);
-        } catch(Exception ex) {
-            ex.getMessage();
+        } catch (InvoiceAlreadyExistsException e) {
+            e.getExMessage();
         }
-
         return su;
     }
 
@@ -58,28 +56,22 @@ public class InvoiceController {
         Invoice si = new Sell_Installment(listItem, installment_period, DatabaseCustomer.getCustomer(id_customer));
         try {
             DatabaseInvoice.addInvoice(si);
-        } catch(Exception ex) {
-            ex.getMessage();
+        } catch (InvoiceAlreadyExistsException e) {
+            e.getExMessage();
         }
-
         return si;
     }
 
     @RequestMapping(value = "/canceltransaction", method= RequestMethod.POST)
     public Invoice cancelTransaction(@RequestParam(value="idinvoice") int id_invoice) {
-
         Invoice inv = DatabaseInvoice.getInvoice(id_invoice);
-
         Transaction.cancelTransaction(DatabaseInvoice.getInvoice(id_invoice));
-
         return inv;
     }
 
     @RequestMapping(value = "/finishtransaction", method= RequestMethod.POST)
     public Invoice finishTransaction(@RequestParam(value="idinvoice") int id_invoice) {
-
         Transaction.finishTransaction(DatabaseInvoice.getInvoice(id_invoice));
-
         return DatabaseInvoice.getInvoice(id_invoice);
     }
 }

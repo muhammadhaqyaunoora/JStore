@@ -12,7 +12,7 @@ public abstract class Invoice
 {
     // instance variables - replace the example below with your own
     private int id;
-    private ArrayList<Integer> item;
+    protected ArrayList<Integer> item;
     private Calendar date;
     private int totalPrice;
     private boolean isActive;
@@ -24,8 +24,11 @@ public abstract class Invoice
     public Invoice(ArrayList<Integer> item)
     {
         // initialise instance variables
-        this.id=DatabaseInvoice.getLastInvoiceId()+1;
         this.item=item;
+        int size=item.size();
+        this.id=DatabaseInvoice.getLastInvoiceId()+1;
+        this.setDate(Calendar.getInstance());
+        this.date=getDate();
         //setTotalPrice(item.getPrice()*totalItem);
     }
 
@@ -37,7 +40,7 @@ public abstract class Invoice
     public int getId()
     {
         // put your code here
-        return this.id;
+        return id;
     }
     
     /**
@@ -47,7 +50,7 @@ public abstract class Invoice
      */
     public ArrayList<Integer> getItem()
     {
-        return this.item;
+        return item;
     }
     
     /**
@@ -57,7 +60,7 @@ public abstract class Invoice
      */
     public Calendar getDate()
     {
-        return this.date;
+        return date;
     }
     
     /**
@@ -67,7 +70,7 @@ public abstract class Invoice
      */
     public int getTotalPrice()
     {
-        return this.totalPrice;
+        return totalPrice;
     }
     
     public abstract InvoiceStatus getInvoiceStatus();
@@ -76,12 +79,12 @@ public abstract class Invoice
     
     public boolean isActive()
     {
-        return this.isActive;
+        return isActive;
     }
     
     public Customer getCustomer()
     {
-        return this.customer;
+        return customer;
     }
     
     /**
@@ -134,9 +137,9 @@ public abstract class Invoice
         //this.status = status;
     }
     
-    public void setIsActive(boolean isActive)
+    public void setIsActive(boolean active)
     {
-        this.isActive = isActive;
+        this.isActive = active;
     }
     
     public abstract String toString();

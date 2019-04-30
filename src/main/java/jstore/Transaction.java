@@ -64,30 +64,32 @@ public class Transaction
     
     public static boolean finishTransaction(Invoice invoice)
     {
-        for (Invoice invo : DatabaseInvoice.getInvoiceDatabase()){
-            if(invo == invoice){
-                if (invoice.getInvoiceStatus().equals(InvoiceStatus.Unpaid) || invoice.getInvoiceStatus().equals(InvoiceStatus.Installment)){
-                    invo.setIsActive(false);
-                    //invoice1.set(i,invoice);
-                    //System.out.println(invo.getIsActive());
+        if(invoice.getInvoiceStatus()==InvoiceStatus.Unpaid|| invoice.getInvoiceStatus()==InvoiceStatus.Installment){
+            ArrayList<Invoice> inv = DatabaseInvoice.getInvoiceDatabase();
+            for (int i = 0; i < inv.size(); i++){
+                if(inv.get(i).getId() == invoice.getId()){
+                    invoice.setIsActive(false);
+                    inv.set(i,invoice);
+                    System.out.println(invoice.toString());
                     return true;
                 }
             }
+            return false;
         }
         return false;
     }
     
     public static boolean cancelTransaction(Invoice invoice)
     {
-        for (Invoice invo : DatabaseInvoice.getInvoiceDatabase()){
-            if(invo == invoice){
-                if (invoice.getInvoiceStatus().equals(InvoiceStatus.Unpaid) || invoice.getInvoiceStatus().equals(InvoiceStatus.Installment)){
-                    invo.setIsActive(false);
-                    //invoice1.set(i,invoice);
-                    //System.out.println(invo.getIsActive());
+        if(invoice.getInvoiceStatus()==InvoiceStatus.Unpaid|| invoice.getInvoiceStatus()==InvoiceStatus.Installment) {
+            ArrayList<Invoice> invDb = DatabaseInvoice.getInvoiceDatabase();
+            for (Invoice inv : invDb) {
+                if (inv.getId() == invoice.getId()) {
+                    invDb.remove(inv);
                     return true;
                 }
             }
+            return false;
         }
         return false;
     }

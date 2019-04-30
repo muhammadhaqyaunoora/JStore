@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class DatabaseInvoice
 {
     // instance variables - replace the example below with your own
-    private final static ArrayList<Invoice> INVOICE_DATABASE=new ArrayList<>();
+    private static final ArrayList<Invoice> INVOICE_DATABASE=new ArrayList<>();
     private static int LAST_INVOICE_ID=0;
 
     /**
@@ -32,7 +32,7 @@ public class DatabaseInvoice
     {
         // put your code here
         for (Invoice invoice1: INVOICE_DATABASE) {
-            if ((invoice.getCustomer().equals(invoice1.getCustomer()))) {
+            if ((invoice.getItem().equals(invoice1.getItem()))) {
                 throw new InvoiceAlreadyExistsException(invoice1);
             }
         }
@@ -43,10 +43,8 @@ public class DatabaseInvoice
     
     public static Invoice getInvoice(int id)
     {
-        for(Invoice invoice : INVOICE_DATABASE)
-        {
-            if(id == invoice.getId())
-            {
+        for (Invoice invoice : INVOICE_DATABASE) {
+            if (id == invoice.getId()) {
                 return invoice;
             }
         }
@@ -55,30 +53,30 @@ public class DatabaseInvoice
     
     public static ArrayList<Invoice> getActiveOrder(Customer customer) throws CustomerDoesntHaveActiveException
     {
-        ArrayList<Invoice> Invoice_list = new ArrayList<Invoice>();
-        for (Invoice invoiceDB : INVOICE_DATABASE)
-        {
-            if (invoiceDB.isActive() == true &&
-                    customer.equals(invoiceDB.getCustomer()))
-            {
-                Invoice_list.add(invoiceDB);
+        ArrayList<Invoice> temp = new ArrayList<>();
+        for (Invoice invoice : INVOICE_DATABASE) {
+            if (customer.equals(invoice.getCustomer()) && invoice.isActive() && (invoice.getInvoiceStatus().equals(InvoiceStatus.Unpaid)||invoice.getInvoiceStatus().equals(InvoiceStatus.Installment)) ) {
+                temp.add(invoice);
             }
         }
-        throw new CustomerDoesntHaveActiveException(customer);
+        if(temp.size()>0){
+            return temp;
+        }
+        else{
+            throw new CustomerDoesntHaveActiveException(customer);
+        }
     }
     
     public static boolean removeInvoice(int id) throws InvoiceNotFoundException
     {
-        for(Invoice invoice : INVOICE_DATABASE)
-        {
-            if(id == invoice.getId())
-            {
-                if(invoice.isActive())
-                {
+        for(Invoice invoice : INVOICE_DATABASE) {
+            if (id == invoice.getId()) {
+                if (invoice.isActive()) {
                     invoice.setIsActive(false);
-                    INVOICE_DATABASE.remove(invoice);
-                    return true;
+                    invoice.toString();
                 }
+                INVOICE_DATABASE.remove(invoice);
+                return true;
             }
         }
         throw new InvoiceNotFoundException(id);

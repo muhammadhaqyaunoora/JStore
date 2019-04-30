@@ -12,8 +12,8 @@ import java.text.SimpleDateFormat;
 public class Sell_Unpaid extends Invoice
 {
     // instance variables - replace the example below with your own
-    private static InvoiceType INVOICE_TYPE=InvoiceType.Sell;
-    private static InvoiceStatus INVOICE_STATUS=InvoiceStatus.Unpaid;
+    private static final InvoiceType INVOICE_TYPE=InvoiceType.Sell;
+    private static final InvoiceStatus INVOICE_STATUS=InvoiceStatus.Unpaid;
     private Calendar dueDate;
     private Customer customer;
     private boolean isActive;
@@ -26,14 +26,22 @@ public class Sell_Unpaid extends Invoice
         // initialise instance variables
         super(item);
         this.customer=customer;
-        this.dueDate.add(Calendar.DATE,1);
-        this.isActive=true;
+//        this.dueDate.add(Calendar.DATE,1);
+        super.setIsActive(true);
+        int total = 0;
+        for(int id : item){
+            Item temp = DatabaseItem.getItemFromID(id);
+            int priceTemp = 0;
+            if (temp != null) {
+                priceTemp = temp.getPrice();
+            }
+            total += priceTemp;
+        }
+        super.setTotalPrice(total);
     }
 
     /**
      * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
    public InvoiceStatus getInvoiceStatus()
@@ -62,32 +70,28 @@ public class Sell_Unpaid extends Invoice
         this.customer=customer;
     }
     
-    public void setDueDate(Calendar dueDate)
-    {
-        this.dueDate=dueDate;
-    }
+//    public void setDueDate(Calendar dueDate)
+//    {
+//        this.dueDate=dueDate;
+//    }
     
     public String toString()
     {
-       setTotalPrice(0);
-       for (int temp1 : this.getItem())
-       {
-           System.out.println(DatabaseItem.getItemFromID(temp1).toString());
-       }
-       SimpleDateFormat sdf = new SimpleDateFormat ("dd MMMMM yyyy");
-
-       return "\n========INVOICE========" + 
-              "\nID: " +  getId() + 
-          //  "\nItem: " + getItem().getName() +
-          //  "\nAmount: "  + getTotalItem() +
-          //    "\nBuy date: " + sdf.format(getDate().getTime()) +
-          //  "\nPrice: " + getItem().getPrice() +
-              "\nTotal price: " + getTotalPrice() +
-         //  "\nSupplier ID: " + getItem().getSupplier().getId() +
-         //  "\nSupplier name: " + getItem().getSupplier().getName() +
-             "\nCustomer ID: " + customer.getId() +
-              "\nCustomer Name: " + customer.getName() +
-              "\nStatus: " + InvoiceStatus.Unpaid + 
-              "\nSell Success\n";
+        StringBuilder total = new StringBuilder();
+        total.append("===============INVOICE===============\n");
+        for(int i : item){
+            Item temp = DatabaseItem.getItemFromID(i);
+            String stringTemp = null;
+            if (temp != null) {
+                stringTemp = temp.toString();
+                total.append(stringTemp);
+            }
+            total.append("\n");
+        }
+        total.append("\nCustomer: ").append(customer.getName());
+        int price = this.getTotalPrice();
+        total.append("\nTotal price = ").append(price);
+        total.append("\n"+this.isActive());
+        return total.toString();
     }
 }
