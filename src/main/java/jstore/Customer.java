@@ -24,6 +24,17 @@ public class Customer
     /**
      * Constructor for objects of class Customer
      */
+    public Customer(int id, String name, String email, String username, String password, Calendar birthDate)
+    {
+        // initialise instance variables
+        this.name=name;
+        this.email=email;
+        this.username=username;
+        this.password=password;
+        this.id=id;
+        this.birthDate=birthDate;
+    }
+
     public Customer(String name, String email, String username, String password, Calendar birthDate)
     {
         // initialise instance variables

@@ -33,7 +33,7 @@ public class Sell_Paid extends Invoice
             if (temp != null) {
                 priceTemp = temp.getPrice();
             }
-            total += priceTemp;
+            total = priceTemp;
         }
         super.setTotalPrice(total);
     }

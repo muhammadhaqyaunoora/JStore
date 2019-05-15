@@ -35,7 +35,7 @@ public class Sell_Unpaid extends Invoice
             if (temp != null) {
                 priceTemp = temp.getPrice();
             }
-            total += priceTemp;
+            total = priceTemp;
         }
         super.setTotalPrice(total);
     }
