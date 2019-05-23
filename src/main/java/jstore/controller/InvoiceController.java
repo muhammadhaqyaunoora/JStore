@@ -10,7 +10,7 @@ public class InvoiceController {
     @RequestMapping(value = "/invoicecustomer/{id_customer}", method = RequestMethod.GET)
     public ArrayList<Invoice> invoiceCust(@PathVariable int id_customer) {
         try {
-            return DatabaseInvoice.getActiveOrder(DatabaseCustomer.getCustomer(id_customer));
+            return DatabaseInvoice.getActiveOrder(DatabaseCustomerPostgre.getCustomer(id_customer));
         } catch (CustomerDoesntHaveActiveException e) {
             e.getExMessage();
             return null;
@@ -26,7 +26,7 @@ public class InvoiceController {
     public Invoice createInvoicePaid(@RequestParam(value="listitem") ArrayList<Integer> listItem,
                                      @RequestParam(value="idcustomer") int id_customer) {
 
-        Invoice sp = new Sell_Paid(listItem, DatabaseCustomer.getCustomer(id_customer));
+        Invoice sp = new Sell_Paid(listItem, DatabaseCustomerPostgre.getCustomer(id_customer));
         try {
             DatabaseInvoice.addInvoice(sp);
         } catch (InvoiceAlreadyExistsException e) {
@@ -39,7 +39,7 @@ public class InvoiceController {
     public Invoice createInvoiceUnpaid(@RequestParam(value="listitem") ArrayList<Integer> listItem,
                                        @RequestParam(value="idcustomer") int id_customer) {
 
-        Invoice su = new Sell_Unpaid(listItem, DatabaseCustomer.getCustomer(id_customer));
+        Invoice su = new Sell_Unpaid(listItem, DatabaseCustomerPostgre.getCustomer(id_customer));
         try {
             DatabaseInvoice.addInvoice(su);
         } catch (InvoiceAlreadyExistsException e) {
@@ -53,7 +53,7 @@ public class InvoiceController {
                                             @RequestParam(value="durasiinstallment") int installment_period,
                                             @RequestParam(value="idcustomer") int id_customer) {
 
-        Invoice si = new Sell_Installment(listItem, installment_period, DatabaseCustomer.getCustomer(id_customer));
+        Invoice si = new Sell_Installment(listItem, installment_period, DatabaseCustomerPostgre.getCustomer(id_customer));
         try {
             DatabaseInvoice.addInvoice(si);
         } catch (InvoiceAlreadyExistsException e) {

@@ -16,7 +16,7 @@ public class Sell_Installment extends Invoice
     private int installmentPeriod;
     private int installmentPrice;
     private Customer customer;
-    private boolean isActive;
+//    private boolean isActive;
     
     /**
      * Constructor for objects of class Sell_Installment
@@ -27,7 +27,15 @@ public class Sell_Installment extends Invoice
         super(item);
         this.installmentPeriod=installmentPeriod;
         this.customer=customer;
-        this.isActive=true;
+        super.setIsActive(true);
+        int total = 0;
+        for(int id : item){
+            Item temp = DatabaseItem.getItemFromID(id);
+            int priceTemp = temp.getPrice();
+            total += priceTemp;
+        }
+        super.totalPrice = total;
+        this.installmentPrice = (super.totalPrice/installmentPeriod)*102/100;
     }
 
     /**
@@ -61,14 +69,14 @@ public class Sell_Installment extends Invoice
         return INVOICE_TYPE;
     }
     
-    public void setInstallmentPrice()
+    public void setInstallmentPrice(int installmentPrice)
     {
-    //    installmentPrice=totalPrice/installmentPeriod*102/100;
+        this.installmentPrice=installmentPrice;
     }
     
     public void setTotalPrice()
     {
-    //    totalPrice=installmentPrice*installmentPeriod;
+        totalPrice=installmentPrice*installmentPeriod;
     }
     
     public void setCustomer(Customer customer)
@@ -78,27 +86,38 @@ public class Sell_Installment extends Invoice
     
     public String toString()
     {
-       setTotalPrice(0);
-       for (int temp1 : this.getItem())
-       {
-           System.out.println(DatabaseItem.getItemFromID(temp1).toString());
-       }
+//       setTotalPrice(0);
+//       for (int temp1 : this.getItem())
+//       {
+//           System.out.println(DatabaseItem.getItemFromID(temp1).toString());
+//       }
         
-       SimpleDateFormat sdf = new SimpleDateFormat ("dd MMMMM yyyy");
-       return "\n========INVOICE========" + 
-              "\nID: " +  getId() + 
-          //  "\nItem: " + getItem().getName() +
-          //  "\nAmount: "  + getTotalItem() +
-          //  "\nBuy date: " + sdf.format(getDate().getTime()) +
-          //  "\nPrice: " + getItem().getPrice() +
-              "\nTotal price: " + getTotalPrice() +
-              "\nInstallment price: " + installmentPrice +
-          //  "\nSupplier ID: " + getItem().getSupplier().getId() +
-          //  "\nSupplier name: " + getItem().getSupplier().getName() +
-              "\nCustomer ID: " + customer.getId() +
-              "\nCustomer Name: " + customer.getName() +
-              "\nStatus: " + InvoiceStatus.Installment + 
-              "\nInstallment period: " + installmentPeriod +
-              "\nSell Success\n";
+//       SimpleDateFormat sdf = new SimpleDateFormat ("dd MMMMM yyyy");
+//       return "\n========INVOICE========" +
+//              "\nID: " +  getId() +
+//          //  "\nItem: " + getItem().getName() +
+//          //  "\nAmount: "  + getTotalItem() +
+//          //  "\nBuy date: " + sdf.format(getDate().getTime()) +
+//          //  "\nPrice: " + getItem().getPrice() +
+//              "\nTotal price: " + getTotalPrice() +
+//              "\nInstallment price: " + installmentPrice +
+//          //  "\nSupplier ID: " + getItem().getSupplier().getId() +
+//          //  "\nSupplier name: " + getItem().getSupplier().getName() +
+//              "\nCustomer ID: " + customer.getId() +
+//              "\nCustomer Name: " + customer.getName() +
+//              "\nStatus: " + InvoiceStatus.Installment +
+//              "\nInstallment period: " + installmentPeriod +
+//              "\nSell Success\n";
+        StringBuilder total = new StringBuilder();
+        for(int i : item){
+            Item temp = DatabaseItem.getItemFromID(i);
+            String stringTemp = null;
+            if (temp != null){
+                stringTemp = temp.toString();
+                total.append(stringTemp);
+            }
+            total.append("\n");
+        }
+        return total.toString();
     }
 }

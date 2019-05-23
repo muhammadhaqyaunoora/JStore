@@ -42,7 +42,7 @@ public class Customer
         this.email=email;
         this.username=username;
         this.password=password;
-        this.id=DatabaseCustomer.getLastCustomerID()+1;
+        this.id=DatabaseCustomerPostgre.getLastCustomerId()+1;
         this.birthDate=birthDate;
     }
     
@@ -52,14 +52,14 @@ public class Customer
         this.email=email;
         this.username=username;
         this.password=password;
-        this.id=DatabaseCustomer.getLastCustomerID()+1;
+        this.id=DatabaseCustomerPostgre.getLastCustomerId()+1;
         this.birthDate = new GregorianCalendar(year, month, dayOfMonth);
     }
 
     /**
      * An example of a method - replace this comment with your own
      *
-     * @param  y  a sample parameter for a method
+     *
      * @return    the sum of x and y
      */
     public String getName()

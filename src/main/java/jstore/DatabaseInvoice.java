@@ -55,7 +55,7 @@ public class DatabaseInvoice
     {
         ArrayList<Invoice> temp = new ArrayList<>();
         for (Invoice invoice : INVOICE_DATABASE) {
-            if (customer.equals(invoice.getCustomer()) && invoice.isActive() && (invoice.getInvoiceStatus().equals(InvoiceStatus.Unpaid)||invoice.getInvoiceStatus().equals(InvoiceStatus.Installment)) ) {
+            if (customer.getId()==invoice.getCustomer().getId() && invoice.getIsActive() && (invoice.getInvoiceStatus().equals(InvoiceStatus.Unpaid)||invoice.getInvoiceStatus().equals(InvoiceStatus.Installment)) ) {
                 temp.add(invoice);
             }
         }
@@ -71,7 +71,7 @@ public class DatabaseInvoice
     {
         for(Invoice invoice : INVOICE_DATABASE) {
             if (id == invoice.getId()) {
-                if (invoice.isActive()) {
+                if (invoice.getIsActive()) {
                     invoice.setIsActive(false);
                     invoice.toString();
                 }

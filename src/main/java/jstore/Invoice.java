@@ -14,7 +14,7 @@ public abstract class Invoice
     private int id;
     protected ArrayList<Integer> item;
     private Calendar date;
-    private int totalPrice;
+    protected int totalPrice;
     private boolean isActive;
     private Customer customer; 
     
@@ -77,7 +77,7 @@ public abstract class Invoice
     
     public abstract InvoiceType getInvoiceType();
     
-    public boolean isActive()
+    public boolean getIsActive()
     {
         return isActive;
     }
@@ -124,22 +124,17 @@ public abstract class Invoice
      */
     public void setTotalPrice(int totalPrice)
     {
-        int price = 0;
-        for(Item object : DatabaseItem.getItemDatabase())
-        {
-            price = price+object.getPrice();
-        }
-        this.totalPrice = price;
+        this.totalPrice = totalPrice;
     }
     
-    public void setInvoiceStatus(InvoiceStatus status)
-    {
-        //this.status = status;
-    }
+//    public void setInvoiceStatus(InvoiceStatus status)
+//    {
+//        this.status = status;
+//    }
     
     public void setIsActive(boolean active)
     {
-        this.isActive = active;
+        isActive = active;
     }
     
     public abstract String toString();

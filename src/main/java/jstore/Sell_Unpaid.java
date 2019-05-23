@@ -16,7 +16,7 @@ public class Sell_Unpaid extends Invoice
     private static final InvoiceStatus INVOICE_STATUS=InvoiceStatus.Unpaid;
     private Calendar dueDate;
     private Customer customer;
-    private boolean isActive;
+//    private boolean isActive;
     
     /**
      * Constructor for objects of class Sell_Unpaid
@@ -26,18 +26,16 @@ public class Sell_Unpaid extends Invoice
         // initialise instance variables
         super(item);
         this.customer=customer;
-//        this.dueDate.add(Calendar.DATE,1);
+        this.dueDate = Calendar.getInstance();
+        dueDate.add(Calendar.DATE,1);
         super.setIsActive(true);
         int total = 0;
         for(int id : item){
             Item temp = DatabaseItem.getItemFromID(id);
-            int priceTemp = 0;
-            if (temp != null) {
-                priceTemp = temp.getPrice();
-            }
-            total = priceTemp;
+            int priceTemp = temp.getPrice();
+            total += priceTemp;
         }
-        super.setTotalPrice(total);
+        super.totalPrice = total;
     }
 
     /**
@@ -70,10 +68,10 @@ public class Sell_Unpaid extends Invoice
         this.customer=customer;
     }
     
-//    public void setDueDate(Calendar dueDate)
-//    {
-//        this.dueDate=dueDate;
-//    }
+    public void setDueDate(Calendar dueDate)
+    {
+        this.dueDate=dueDate;
+    }
     
     public String toString()
     {
@@ -88,10 +86,10 @@ public class Sell_Unpaid extends Invoice
             }
             total.append("\n");
         }
-        total.append("\nCustomer: ").append(customer.getName());
-        int price = this.getTotalPrice();
-        total.append("\nTotal price = ").append(price);
-        total.append("\n"+this.isActive());
+//        total.append("\nCustomer: ").append(customer.getName());
+//        int price = this.getTotalPrice();
+//        total.append("\nTotal price = ").append(price);
+//        total.append("\n"+this.isActive());
         return total.toString();
     }
 }

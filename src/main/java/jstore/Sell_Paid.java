@@ -15,7 +15,7 @@ public class Sell_Paid extends Invoice
     private static InvoiceType INVOICE_TYPE=InvoiceType.Sell;
     private static InvoiceStatus INVOICE_STATUS=InvoiceStatus.Paid;
     private Customer customer;
-    private boolean isActive;
+//    private boolean isActive;
 
     /**
      * Constructor for objects of class Sell_Paid
@@ -29,13 +29,10 @@ public class Sell_Paid extends Invoice
         int total = 0;
         for(int id : item){
             Item temp = DatabaseItem.getItemFromID(id);
-            int priceTemp = 0;
-            if (temp != null) {
-                priceTemp = temp.getPrice();
-            }
-            total = priceTemp;
+            int priceTemp = temp.getPrice();
+            total += priceTemp;
         }
-        super.setTotalPrice(total);
+        super.totalPrice = total;
     }
 
     /**
@@ -77,10 +74,10 @@ public class Sell_Paid extends Invoice
             }
             total.append("\n");
         }
-        total.append("\nCustomer: ").append(customer.getName());
-        int price = this.getTotalPrice();
-        total.append("\nTotal price = ").append(price);
-        total.append("\n"+this.isActive());
+//        total.append("\nCustomer: ").append(customer.getName());
+//        int price = this.getTotalPrice();
+//        total.append("\nTotal price = ").append(price);
+//        total.append("\n"+this.isActive());
         return total.toString();
     }
 }
